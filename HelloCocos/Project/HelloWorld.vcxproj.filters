@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src\The App</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\GameScene.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src\The App</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\GameScene.h">
-      <Filter>src</Filter>
+      <Filter>src\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +31,12 @@
     </Filter>
     <Filter Include="win32">
       <UniqueIdentifier>{e717d676-5bf5-4e41-b7d2-ae0d0c7c28da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\The App">
+      <UniqueIdentifier>{a5d5c819-8453-4c0c-a5e4-fd4dd3c8e489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes">
+      <UniqueIdentifier>{52f26db9-1bf4-4a0a-83bb-8d05b20d76a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
