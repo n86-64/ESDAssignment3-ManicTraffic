@@ -26,7 +26,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		director->setOpenGLView(glview);
 	}
 
-	auto scene = GameScene::create();
+	auto scene = RHMainMenu::create();
 	director->runWithScene(scene);
 	return true;
 }

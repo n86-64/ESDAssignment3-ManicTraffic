@@ -1,12 +1,12 @@
 #include "GameScene.h"
 USING_NS_CC;
 
-cocos2d::Scene* GameScene::createScene()
+cocos2d::Scene* RHMainMenu::createScene()
 {
 	return cocos2d::Scene::create();
 }
 
-bool GameScene::init()
+bool RHMainMenu::init()
 {
 	if (!cocos2d::Scene::init())
 	{
