@@ -1,5 +1,6 @@
 #pragma once
 #include <cocos2d.h>
+#include "RHScenes.h"
 
 class RHMainMenu : public cocos2d::Scene
 {
@@ -17,6 +18,10 @@ public:
 	void createLevelClicked(cocos2d::Ref* sender);
 	void openSettingsClicked(cocos2d::Ref* sender);
 	void quitClicked(cocos2d::Ref* sender);
+
+	// scenes to link to when requested by the user.
+	RHGameScene* gameScene = RHGameScene::createScene();
+	RHDevScene*  editorScene = RHDevScene::createScene();
 
 	CREATE_FUNC(RHMainMenu);
 };

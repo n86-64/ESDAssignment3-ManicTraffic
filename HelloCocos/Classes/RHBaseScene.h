@@ -3,11 +3,19 @@ Module - UFCFWA-30-1
 Name - Nathan Butt
 Student No - 16013327
 
-Exersice 2 - Minesweeper
-File Name - Cell.h
-File Contents - The class definition for a grid cell.
+Exersice 3 - Rush hour game. 
+File Name - RHBaseScene.h
+File Contents - The class definition for a Base Scene inheritance class. 
 
-Purpose - Contains the logic for the cells that make up the Grid in minesweeper.
+Purpose - Contains the basic objects for the several scene objects that will be used in the system. 
 */
 
 #pragma once
+#include "cocos2d.h"
+
+
+class RHBaseScene : public cocos2d::Scene 
+{
+	// dont overide anything yet. 
+	// the individual scenes can do that. 
+};

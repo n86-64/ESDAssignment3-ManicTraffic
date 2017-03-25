@@ -10,6 +10,9 @@
     <ClCompile Include="..\Classes\RHMainMenu.cpp">
       <Filter>src\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RHScenes.cpp">
+      <Filter>src\Scenes\Game Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -23,6 +26,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RHBaseScene.h">
       <Filter>src\Scenes\Base Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHScenes.h">
+      <Filter>src\Scenes\Game Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +52,15 @@
     </Filter>
     <Filter Include="src\Scenes\Base Scene">
       <UniqueIdentifier>{44b71099-b413-4f98-a430-a7a1492c8b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileIO">
+      <UniqueIdentifier>{18deaeb1-66e0-4293-89e4-b85f7e65c459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Game Scenes">
+      <UniqueIdentifier>{512b56bd-9394-477a-a5c5-7017ff3037a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{860dda01-7f04-423e-9b29-d0bd3fc4db15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
