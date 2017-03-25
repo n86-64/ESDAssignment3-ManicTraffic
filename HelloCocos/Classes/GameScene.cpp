@@ -22,7 +22,6 @@ bool RHMainMenu::init()
 	initMusic();
 	createMenuOptions();
 
-
 	return true;
 }
 
@@ -36,15 +35,21 @@ void RHMainMenu::createMenuOptions()
 {
 	cocos2d::Label* playGameLabel = Label::createWithTTF("Play", "fonts/arial.ttf", 30);
 	cocos2d::Label* createLevelsLabel = Label::createWithTTF("Create", "fonts/arial.ttf", 30);
+	cocos2d::Label* openSettingsLabel = Label::createWithTTF("Settings", "fonts/arial.ttf", 30);
+	cocos2d::Label* quitLabel = Label::createWithTTF("Exit", "fonts/arial.ttf", 30);
 
 	playGameLabel->enableOutline(Color4B::BLACK, 4);
 	createLevelsLabel->enableOutline(Color4B::BLACK, 4);
+	openSettingsLabel->enableOutline(Color4B::BLACK, 4);
+	quitLabel->enableOutline(Color4B::BLACK, 4);
 
 	MenuItemLabel* playGameItem = MenuItemLabel::create(playGameLabel, CC_CALLBACK_1(RHMainMenu::playGameClicked, this));
 	MenuItemLabel* createLevelsItem = MenuItemLabel::create(createLevelsLabel, CC_CALLBACK_1(RHMainMenu::createLevelClicked, this));
+	MenuItemLabel* openSettingsItem = MenuItemLabel::create(openSettingsLabel, CC_CALLBACK_1(RHMainMenu::openSettingsClicked, this));
+	MenuItemLabel* quitItem = MenuItemLabel::create(quitLabel, CC_CALLBACK_1(RHMainMenu::quitClicked, this));
 
-	Menu* theMenu = Menu::create(playGameItem, createLevelsItem,nullptr);
-	theMenu->setPosition(Vec2(50, 400));
+	Menu* theMenu = Menu::create(playGameItem, createLevelsItem, openSettingsItem ,quitItem, nullptr);
+	theMenu->setPosition(Vec2(80, 400));
 	theMenu->alignItemsVerticallyWithPadding(0.0f);
 	this->addChild(theMenu, 1);
 }
@@ -54,8 +59,19 @@ void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 
 }
 
-void RHMainMenu::createLevelClicked(cocos2d::Ref * sender)
+void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
 {
+
+}
+
+void RHMainMenu::openSettingsClicked(cocos2d::Ref* sender)
+{
+
+}
+
+void RHMainMenu::quitClicked(cocos2d::Ref* sender)
+{
+	Director::getInstance()->end();
 }
 
 void RHMainMenu::initMenuBackdropAndTitle() 

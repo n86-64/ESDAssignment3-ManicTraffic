@@ -15,6 +15,8 @@ public:
 	// event handling for the buttons.
 	void playGameClicked(cocos2d::Ref* sender);
 	void createLevelClicked(cocos2d::Ref* sender);
+	void openSettingsClicked(cocos2d::Ref* sender);
+	void quitClicked(cocos2d::Ref* sender);
 
 	CREATE_FUNC(RHMainMenu);
 };
