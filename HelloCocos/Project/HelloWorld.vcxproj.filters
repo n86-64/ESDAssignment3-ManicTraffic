@@ -7,7 +7,7 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src\The App</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
+    <ClCompile Include="..\Classes\RHMainMenu.cpp">
       <Filter>src\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -18,7 +18,7 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src\The App</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
+    <ClInclude Include="..\Classes\RHMainMenu.h">
       <Filter>src\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -40,6 +40,9 @@
     </Filter>
     <Filter Include="src\Debugger">
       <UniqueIdentifier>{f916ce1d-d8a4-4daa-9dcb-11e760b5fa7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Base Scene">
+      <UniqueIdentifier>{44b71099-b413-4f98-a430-a7a1492c8b7d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
