@@ -13,3 +13,9 @@ RHGameGrid* RHGameGrid::create()
 	CC_SAFE_DELETE(grid);
 	return NULL;
 }
+
+void RHGameGrid::initGrid()
+{
+
+}
+

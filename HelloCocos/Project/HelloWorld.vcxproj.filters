@@ -13,7 +13,9 @@
     <ClCompile Include="..\Classes\RHScenes.cpp">
       <Filter>src\Scenes\Game Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RHGameGrid.cpp" />
+    <ClCompile Include="..\Classes\RHGameGrid.cpp">
+      <Filter>src\Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

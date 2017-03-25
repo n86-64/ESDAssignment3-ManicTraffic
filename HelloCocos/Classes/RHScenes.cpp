@@ -36,7 +36,7 @@ void RHDevScene::initGrid()
 	if (levelGrid == nullptr) 
 	{
 		    levelGrid = RHGameGrid::create();
-			levelGrid->setPosition(Vec2(200, 300));
+			levelGrid->setPosition(Vec2(650, 350));
 			this->addChild(levelGrid, 1);
 	}
 }

@@ -24,7 +24,7 @@ public:
 	~RHGameGrid() = default;
 	static RHGameGrid* create(); // todo add info to fill out the grid.
 
-	void createGrid();
+	void initGrid();
 
 private: 
 	void getAndPlaceVehicles();
