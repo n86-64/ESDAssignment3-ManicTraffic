@@ -35,18 +35,27 @@ void RHMainMenu::initMusic()
 void RHMainMenu::createMenuOptions()
 {
 	cocos2d::Label* playGameLabel = Label::createWithTTF("Play", "fonts/arial.ttf", 30);
-	playGameLabel->enableOutline(Color4B::BLACK, 4);
-	MenuItemLabel* playGameItem = MenuItemLabel::create(playGameLabel, CC_CALLBACK_1(RHMainMenu::playGameClicked, this));
+	cocos2d::Label* createLevelsLabel = Label::createWithTTF("Create", "fonts/arial.ttf", 30);
 
-	Menu* theMenu = Menu::createWithItem(playGameItem);
+	playGameLabel->enableOutline(Color4B::BLACK, 4);
+	createLevelsLabel->enableOutline(Color4B::BLACK, 4);
+
+	MenuItemLabel* playGameItem = MenuItemLabel::create(playGameLabel, CC_CALLBACK_1(RHMainMenu::playGameClicked, this));
+	MenuItemLabel* createLevelsItem = MenuItemLabel::create(createLevelsLabel, CC_CALLBACK_1(RHMainMenu::createLevelClicked, this));
+
+	Menu* theMenu = Menu::create(playGameItem, createLevelsItem,nullptr);
 	theMenu->setPosition(Vec2(50, 400));
-	theMenu->alignItemsVertically();
+	theMenu->alignItemsVerticallyWithPadding(0.0f);
 	this->addChild(theMenu, 1);
 }
 
 void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 {
 
+}
+
+void RHMainMenu::createLevelClicked(cocos2d::Ref * sender)
+{
 }
 
 void RHMainMenu::initMenuBackdropAndTitle() 
