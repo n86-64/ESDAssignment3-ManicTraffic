@@ -27,6 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		director->setOpenGLView(glview);
 	}
 
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("manicTrafficSprites/ManicTrafficSprites.plist");
 	auto scene = RHMainMenu::create();
 	director->runWithScene(scene);
 	return true;

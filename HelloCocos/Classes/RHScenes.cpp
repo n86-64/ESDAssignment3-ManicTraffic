@@ -21,12 +21,12 @@ bool RHDevScene::init()
 
 void RHDevScene::initBackgroundAndWindows()
 {
-	cocos2d::Sprite* backgroundSprite = cocos2d::Sprite::createWithSpriteFrameName("thebigCity.jpg");
-	backgroundSprite->setAnchorPoint(Vec2(0, 0));
-	backgroundSprite->setPosition(Vec2(0, 0));
-	backgroundSprite->setScale(1.4f);
-	backgroundSprite->setOpacity(0.4f);
-	this->addChild(backgroundSprite, 0);
+	auto menuBackground = cocos2d::Sprite::createWithSpriteFrameName("thebigCity.jpg");
+	menuBackground->setAnchorPoint(Vec2(0, 0));
+	menuBackground->setPosition(Vec2(0, 0));
+	menuBackground->setScale(1.4f);
+	menuBackground->setOpacity(100);
+	this->addChild(menuBackground, 0);
 }
 
 

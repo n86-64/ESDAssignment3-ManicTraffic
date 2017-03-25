@@ -20,8 +20,6 @@ public:
 	void quitClicked(cocos2d::Ref* sender);
 
 	// scenes to link to when requested by the user.
-	RHGameScene* gameScene = RHGameScene::createScene();
-	RHDevScene*  editorScene = RHDevScene::createScene();
 
 	CREATE_FUNC(RHMainMenu);
 };

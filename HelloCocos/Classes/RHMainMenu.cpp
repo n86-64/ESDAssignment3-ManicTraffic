@@ -17,7 +17,7 @@ bool RHMainMenu::init()
 		return false;
 	}
 
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("manicTrafficSprites/ManicTrafficSprites.plist");
+
 	initMenuBackdropAndTitle();
 	initMusic();
 	createMenuOptions();
