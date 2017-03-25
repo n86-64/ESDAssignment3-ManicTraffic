@@ -13,6 +13,7 @@
     <ClCompile Include="..\Classes\RHScenes.cpp">
       <Filter>src\Scenes\Game Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RHGameGrid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -29,6 +30,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RHScenes.h">
       <Filter>src\Scenes\Game Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHWidgetBase.h">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHGameGrid.h">
+      <Filter>src\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHLevelComponents.h">
+      <Filter>src\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +71,12 @@
     </Filter>
     <Filter Include="src\UI">
       <UniqueIdentifier>{860dda01-7f04-423e-9b29-d0bd3fc4db15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game Objects">
+      <UniqueIdentifier>{c67e8a70-cb18-4f37-9fe8-3957b85c8c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Levels">
+      <UniqueIdentifier>{639189cc-b3bb-4883-8364-5e27a41855d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

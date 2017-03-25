@@ -1,6 +1,7 @@
 #include <iostream>
 #include "SimpleAudioEngine.h"
 #include "RHMainMenu.h"
+#include "RHGameGrid.h"
 
 USING_NS_CC;
 
@@ -29,7 +30,7 @@ bool RHMainMenu::init()
 void RHMainMenu::initMusic() 
 {
 	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Music/backTrack.mp3");
-	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5f);
+	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.01f);
 }
 
 void RHMainMenu::createMenuOptions()
@@ -63,7 +64,7 @@ void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
 {
 	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-	Director::getInstance()->pushScene((cocos2d::Scene*)RHDevScene::createScene());
+	Director::getInstance()->pushScene(TransitionFade::create(0.5,(cocos2d::Scene*)RHDevScene::createScene()));
 }
 
 void RHMainMenu::openSettingsClicked(cocos2d::Ref* sender)

@@ -139,7 +139,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>rush hour grid.gif</key>
+            <key>rush_hour_grid.gif</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -213,7 +213,7 @@
             <key>size</key>
             <string>{1024,1568}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:06f62d8097c4db81d5927ea62b769f12:6e045f80ef101e7fc5abc6c62758f20a:f1f1f5d5b71e0095f33a1a1abd26cafc$</string>
+            <string>$TexturePacker:SmartUpdate:b8b500ed81a01d3d7d4bb3e0e3a1b75b:6e045f80ef101e7fc5abc6c62758f20a:f1f1f5d5b71e0095f33a1a1abd26cafc$</string>
             <key>textureFileName</key>
             <string>ManicTrafficSprites.png</string>
         </dict>

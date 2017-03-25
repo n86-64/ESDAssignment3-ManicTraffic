@@ -12,10 +12,13 @@ Purpose - Contains the basic objects for the several scene objects that will be 
 
 #pragma once
 #include "cocos2d.h"
-
+#include "RHGameGrid.h"
 
 class RHBaseScene : public cocos2d::Scene 
 {
+public:
+	RHGameGrid* levelGrid = nullptr;
+
 	// dont overide anything yet. 
 	// the individual scenes can do that. 
 };

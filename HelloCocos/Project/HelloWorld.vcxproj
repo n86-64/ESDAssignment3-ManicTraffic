@@ -149,6 +149,7 @@ xcopy "$(SolutionDir)\cocos2d\pdb\$(PlatformToolset)\$(Configuration)\*.pdb" "$(
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\RHGameGrid.cpp" />
     <ClCompile Include="..\Classes\RHMainMenu.cpp" />
     <ClCompile Include="..\Classes\RHScenes.cpp" />
     <ClCompile Include="main.cpp" />
@@ -156,8 +157,11 @@ xcopy "$(SolutionDir)\cocos2d\pdb\$(PlatformToolset)\$(Configuration)\*.pdb" "$(
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\RHBaseScene.h" />
+    <ClInclude Include="..\Classes\RHGameGrid.h" />
+    <ClInclude Include="..\Classes\RHLevelComponents.h" />
     <ClInclude Include="..\Classes\RHMainMenu.h" />
     <ClInclude Include="..\Classes\RHScenes.h" />
+    <ClInclude Include="..\Classes\RHWidgetBase.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

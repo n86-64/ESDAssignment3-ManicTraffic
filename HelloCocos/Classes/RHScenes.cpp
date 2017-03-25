@@ -2,6 +2,7 @@
 
 USING_NS_CC;
 
+// The Dev Scene. 
 RHDevScene* RHDevScene::createScene()
 {
 	return RHDevScene::create();
@@ -15,6 +16,7 @@ bool RHDevScene::init()
 	}
 
 	initBackgroundAndWindows();
+	initGrid();
 
 	return true;
 }
@@ -29,8 +31,20 @@ void RHDevScene::initBackgroundAndWindows()
 	this->addChild(menuBackground, 0);
 }
 
+void RHDevScene::initGrid()
+{
+	if (levelGrid == nullptr) 
+	{
+		    levelGrid = RHGameGrid::create();
+			levelGrid->setPosition(Vec2(200, 300));
+			this->addChild(levelGrid, 1);
+	}
+}
 
-// the game scene.
+
+
+
+// The Game Scene.
 RHGameScene * RHGameScene::createScene()
 {
 	return RHGameScene::create();

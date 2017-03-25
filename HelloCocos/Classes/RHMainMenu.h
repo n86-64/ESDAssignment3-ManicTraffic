@@ -19,7 +19,6 @@ public:
 	void openSettingsClicked(cocos2d::Ref* sender);
 	void quitClicked(cocos2d::Ref* sender);
 
-	// scenes to link to when requested by the user.
 
 	CREATE_FUNC(RHMainMenu);
 };
