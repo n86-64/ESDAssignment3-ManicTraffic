@@ -21,6 +21,9 @@
     <ClInclude Include="..\Classes\RHMainMenu.h">
       <Filter>src\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\RHBaseScene.h">
+      <Filter>src\Scenes\Base Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="resource">

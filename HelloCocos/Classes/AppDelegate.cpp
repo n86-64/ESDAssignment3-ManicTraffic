@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "SimpleAudioEngine.h"
-#include "GameScene.h"
+#include "RHMainMenu.h"
 
 USING_NS_CC;
 
