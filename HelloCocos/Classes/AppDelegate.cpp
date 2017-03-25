@@ -1,4 +1,5 @@
 #include "AppDelegate.h"
+#include "SimpleAudioEngine.h"
 #include "GameScene.h"
 
 USING_NS_CC;
@@ -33,10 +34,12 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 void AppDelegate::applicationDidEnterBackground() 
 {
-
+	Director::getInstance()->pause();
+	CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 void AppDelegate::applicationWillEnterForeground() 
 {
-
+	Director::getInstance()->resume();
+	CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

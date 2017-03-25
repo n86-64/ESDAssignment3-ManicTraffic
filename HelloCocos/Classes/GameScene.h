@@ -8,10 +8,12 @@ public:
 	virtual bool init() override;
 	
 	// initialisation of the menu
-	void initMenu();
+	void initMenuBackdropAndTitle();
+	void initMusic();
+	void createMenuOptions();
 
 	// event handling for the buttons.
-	
+	void playGameClicked(cocos2d::Ref* sender);
 
 	CREATE_FUNC(RHMainMenu);
 };
