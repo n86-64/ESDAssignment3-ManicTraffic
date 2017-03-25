@@ -5,7 +5,7 @@ USING_NS_CC;
 
 bool AppDelegate::applicationDidFinishLaunching() 
 {
-	std::string appName = "Manic Traffic";
+	std::string appName = "Manic Traffic Alpha";
 
 #ifdef _DEBUG 
 	appName = "Manic traffic DEBUG v1.0a OpenGL 4.5 (Dont you leak this now OR ELSE)";
