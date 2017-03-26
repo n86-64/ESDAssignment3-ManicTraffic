@@ -10,10 +10,11 @@ RHDevScene* RHDevScene::createScene()
 
 bool RHDevScene::init()
 {
-	if (!cocos2d::Scene::init()) 
+	if (!cocos2d::Scene::initWithPhysics()) 
 	{
 		return false;
 	}
+
 
 	initBackgroundAndWindows();
 	initGrid();

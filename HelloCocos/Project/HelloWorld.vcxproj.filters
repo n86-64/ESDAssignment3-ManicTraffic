@@ -22,7 +22,9 @@
     <ClCompile Include="..\Classes\RHGameGrid.cpp">
       <Filter>src\Game Objects\Grid</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RHLevelComponents.cpp" />
+    <ClCompile Include="..\Classes\RHLevelComponents.cpp">
+      <Filter>src\Storage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

@@ -1,4 +1,7 @@
+#include <limits>
+
 #include "RHCar.h"
+#include "RHGameGrid.h"
 
 USING_NS_CC;
 
@@ -19,7 +22,8 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		car->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 		car->setPosition(cocos2d::Vec2(0, 0));
 		//car->setFlippedX(false);
-		car->setPosition(cocos2d::Vec2(120 + 70, 125 + 70));
+		car->setPosition(cocos2d::Vec2(120 + 210, 125));
+		car->gridPosition.setXY(1, 3);
 		car->autorelease();
 		car->initCar();
 		
@@ -32,7 +36,7 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 
 void RHCar::initCar()
 {
-	// here we will add evenets to move the car. 
+	// here we will add evenets to move the car according to the cars grid position. 
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(RHCar::onTouchBegin, this);
 	touchListener->onTouchMoved = CC_CALLBACK_2(RHCar::onTouchMoved, this);
@@ -49,7 +53,7 @@ RHGridVector RHCar::getGridPosition()
 
 void RHCar::setGridPosition(RHGridVector newPos)
 {
-
+	this->gridPosition = newPos;
 }
 
 // allows us to select and move objects. 
@@ -71,20 +75,79 @@ bool RHCar::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 		return true;
 	}
 
+	cocos2d::log("coordinate of object - x = %f y = %f ", this->getPosition().x, this->getPositionY());
 	return true;
 }
 
 void RHCar::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 {
-	if (this->isVehicleCurrentlySelected) 
+	Point location = touchData->getLocation();
+
+	// correct the location value so that it falls within the rectangle.
+	auto height = this->convertToNodeSpace(location);
+	cocos2d::Rect r = cocos2d::Rect(0, 0, this->getContentSize().width, this->getContentSize().height);
+
+	if (this->isVehicleCurrentlySelected && r.containsPoint(height)) 
 	{
-		this->setPosition(this->getPosition() + touchData->getDelta());
+		Vec2 mouseDelta = touchData->getDelta();
+		//int gridPosDelta = mouseDelta.x / 10;
+		// add collision detection here.
+		// TODO - add system to place cars during editing. 
+
+		// snap the position according to the direction to the 
+		//this->setPosition(Vec2(this->getPositionX() + (gridPosDelta * 70), this->getPositionY()));
+
+		
+		// use this for motion instead. placement will use grid position. (treat getDelta aas a velocity and use a velocity function
+		// to prevent collisions)
+
+		// here we will check to see if we will intersect with a rectangle and if so we dont change our position.
+		// we may need to add this velocaty function. 
+		// if we get the delta when this occurs that could work. 
+
+
+		if (canMove) 
+		{
+			if ((!((this->getPositionX() + mouseDelta.x) > 408.5f)) && (!((this->getPositionX() + mouseDelta.x) < 117.0f)))
+			{
+				this->setPositionX(this->getPositionX() + mouseDelta.x);
+			}
+		}
 	}
 }
 
 void RHCar::onTouchEnded(cocos2d::Touch * touchData, cocos2d::Event * event)
 {
+	// todo - add code that will snap the vehicle to the nearest position when in edit mode. 
 	this->isVehicleCurrentlySelected = false;
+}
+
+bool RHCar::isGoingToCollide(Vec2 mouseDelta)
+{
+	Vec2 newPosition = Vec2(this->getPositionX() + mouseDelta.x, this->getPositionY());
+
+	auto height = this->convertToNodeSpace(newPosition);
+	cocos2d::Rect r = cocos2d::Rect(0, 0, this->getContentSize().width, this->getContentSize().height);
+
+	cocos2d::Rect collisionRect;
+
+	if (RHGameGrid* theGrid = (RHGameGrid*)this->getParent())
+	{
+		for (auto i : theGrid->getChildren()) 
+		{
+			collisionRect = cocos2d::Rect(i->getPosition().x - (i->getContentSize().width/2), i->getPosition().y - (i->getContentSize().height / 2), i->getContentSize().width, i->getContentSize().height);
+
+			if (!collisionRect.equals(r)) 
+			{
+				if (collisionRect.containsPoint(height)) 
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 

@@ -40,6 +40,8 @@ public:
 	// create event handlers and initialise sprite and position. 
 	void initCar();
 
+	bool canMove = true;
+
 	// used to set our position.
 	RHGridVector getGridPosition();
 	void setGridPosition(RHGridVector newPos);
@@ -52,6 +54,7 @@ public:
 private: 
 	RHGridVector gridPosition;
 	bool isVehicleCurrentlySelected = false;
+	bool isGoingToCollide(cocos2d::Vec2 mouseDelta);
 
 	// create functions to initialise.
 	// should cars have a movement mode. (Yes as its a single bit if a bool).

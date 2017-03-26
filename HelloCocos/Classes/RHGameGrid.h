@@ -14,9 +14,13 @@ contexts.
 
 #pragma once
 #include "cocos2d.h"
+#include "RHCar.h"
 
 // TODO - add refrences to RHLevel and RHLevelState classes to allow the grid to be constructed.
 
+
+// we will be taking the level state and using its objects to construct the grid when we enter the game.
+// but first we will need to make sure my collision idea works. 
 class RHGameGrid : public cocos2d::Sprite {
 public:
 
@@ -26,6 +30,11 @@ public:
 
 	void initGrid();
 
+	// put events here for collision.
+	bool onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event);
+	void onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event);
+
 private: 
+	RHCar* selectedCar;
 	void getAndPlaceVehicles();
 };
