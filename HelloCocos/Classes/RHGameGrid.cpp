@@ -18,7 +18,7 @@ RHGameGrid* RHGameGrid::create()
 
 void RHGameGrid::initGrid()
 {
-	auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE,false);
+	auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false);
 	this->addChild(carSprite,1);
 }
 

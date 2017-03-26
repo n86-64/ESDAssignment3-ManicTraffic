@@ -16,7 +16,12 @@
     <ClCompile Include="..\Classes\RHGameGrid.cpp">
       <Filter>src\Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RHCar.cpp" />
+    <ClCompile Include="..\Classes\RHCar.cpp">
+      <Filter>src\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RHGridVector.cpp">
+      <Filter>src\Types</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -45,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RHCar.h">
       <Filter>src\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHGridVector.h">
+      <Filter>src\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +91,9 @@
     </Filter>
     <Filter Include="src\Levels">
       <UniqueIdentifier>{639189cc-b3bb-4883-8364-5e27a41855d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Types">
+      <UniqueIdentifier>{b3a82af7-8092-4456-ae7c-f6c2977c52cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

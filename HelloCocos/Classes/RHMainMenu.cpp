@@ -29,8 +29,9 @@ bool RHMainMenu::init()
 
 void RHMainMenu::initMusic() 
 {
+	// consider using audio engine instead of simpleaudioengine. 
+	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.0);
 	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Music/backTrack.mp3");
-	CocosDenshion::SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.01f);
 }
 
 void RHMainMenu::createMenuOptions()

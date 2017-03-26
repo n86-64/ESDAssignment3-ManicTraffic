@@ -35,6 +35,9 @@ public:
 
 	static RHCar* create(RHCarTypes carType, RHCarDirections carDirections,bool isMovementFree);
 
+private: 
+
+
 
 	// create functions to initialise.
 	// should cars have a movement mode. (Yes as its a single bit )
