@@ -152,6 +152,7 @@ xcopy "$(SolutionDir)\cocos2d\pdb\$(PlatformToolset)\$(Configuration)\*.pdb" "$(
     <ClCompile Include="..\Classes\RHCar.cpp" />
     <ClCompile Include="..\Classes\RHGameGrid.cpp" />
     <ClCompile Include="..\Classes\RHGridVector.cpp" />
+    <ClCompile Include="..\Classes\RHLevelComponents.cpp" />
     <ClCompile Include="..\Classes\RHMainMenu.cpp" />
     <ClCompile Include="..\Classes\RHScenes.cpp" />
     <ClCompile Include="main.cpp" />

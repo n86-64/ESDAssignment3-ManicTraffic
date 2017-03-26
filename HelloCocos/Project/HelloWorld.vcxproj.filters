@@ -13,15 +13,16 @@
     <ClCompile Include="..\Classes\RHScenes.cpp">
       <Filter>src\Scenes\Game Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RHGameGrid.cpp">
-      <Filter>src\Game Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\RHCar.cpp">
-      <Filter>src\Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\RHGridVector.cpp">
       <Filter>src\Types</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RHCar.cpp">
+      <Filter>src\Game Objects\Cars</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RHGameGrid.cpp">
+      <Filter>src\Game Objects\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RHLevelComponents.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -42,17 +43,17 @@
     <ClInclude Include="..\Classes\RHWidgetBase.h">
       <Filter>src\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\RHGameGrid.h">
-      <Filter>src\Game Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\RHLevelComponents.h">
-      <Filter>src\Levels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\RHCar.h">
-      <Filter>src\Game Objects</Filter>
+      <Filter>src\Storage</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\RHGridVector.h">
       <Filter>src\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHCar.h">
+      <Filter>src\Game Objects\Cars</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHGameGrid.h">
+      <Filter>src\Game Objects\Grid</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,9 +78,6 @@
     <Filter Include="src\Scenes\Base Scene">
       <UniqueIdentifier>{44b71099-b413-4f98-a430-a7a1492c8b7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\FileIO">
-      <UniqueIdentifier>{18deaeb1-66e0-4293-89e4-b85f7e65c459}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Scenes\Game Scenes">
       <UniqueIdentifier>{512b56bd-9394-477a-a5c5-7017ff3037a8}</UniqueIdentifier>
     </Filter>
@@ -89,11 +87,20 @@
     <Filter Include="src\Game Objects">
       <UniqueIdentifier>{c67e8a70-cb18-4f37-9fe8-3957b85c8c86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Levels">
-      <UniqueIdentifier>{639189cc-b3bb-4883-8364-5e27a41855d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Types">
       <UniqueIdentifier>{b3a82af7-8092-4456-ae7c-f6c2977c52cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Storage">
+      <UniqueIdentifier>{639189cc-b3bb-4883-8364-5e27a41855d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Storage\FileIO">
+      <UniqueIdentifier>{18deaeb1-66e0-4293-89e4-b85f7e65c459}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game Objects\Cars">
+      <UniqueIdentifier>{5850e846-b664-4092-923a-47624e6e2648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game Objects\Grid">
+      <UniqueIdentifier>{ca89b70e-956c-45d7-ba51-b7dfbec2350d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
