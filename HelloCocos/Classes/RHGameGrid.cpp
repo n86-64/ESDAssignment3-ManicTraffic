@@ -1,4 +1,5 @@
 #include "RHGameGrid.h"
+#include "RHCar.h"
 
 RHGameGrid* RHGameGrid::create()
 {
@@ -6,6 +7,7 @@ RHGameGrid* RHGameGrid::create()
 	if (grid->initWithSpriteFrameName("rush_hour_grid.gif")) 
 	{
 		grid->autorelease();
+		grid->initGrid();
 
 		return grid;
 	}
@@ -16,6 +18,7 @@ RHGameGrid* RHGameGrid::create()
 
 void RHGameGrid::initGrid()
 {
-
+	auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE,false);
+	this->addChild(carSprite,1);
 }
 

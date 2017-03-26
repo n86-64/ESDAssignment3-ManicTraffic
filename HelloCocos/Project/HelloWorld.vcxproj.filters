@@ -16,6 +16,7 @@
     <ClCompile Include="..\Classes\RHGameGrid.cpp">
       <Filter>src\Game Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RHCar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -41,6 +42,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RHLevelComponents.h">
       <Filter>src\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RHCar.h">
+      <Filter>src\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
