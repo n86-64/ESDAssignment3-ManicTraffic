@@ -1,6 +1,6 @@
 #include "RHCar.h"
 
-RHCar * RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMovementFree)
+RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMovementFree)
 {
 	std::string spritePath = "red2w.png";
 	RHCar* car = new RHCar();
