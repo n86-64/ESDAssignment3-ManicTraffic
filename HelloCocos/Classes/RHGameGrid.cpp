@@ -9,7 +9,6 @@ RHGameGrid* RHGameGrid::create()
 	if (grid->initWithSpriteFrameName("rush_hour_grid.gif")) 
 	{
 		grid->autorelease();
-		grid->initGrid();
 
 		return grid;
 	}
@@ -22,17 +21,29 @@ void RHGameGrid::initGrid()
 {
 	// check to see if we can do collision here
 	auto listener = cocos2d::EventListenerTouchOneByOne::create();
+	auto listener2 = cocos2d::EventListenerKeyboard::create();
 	listener->onTouchBegan = CC_CALLBACK_2(RHGameGrid::onTouchBegin, this);
 	listener->onTouchMoved = CC_CALLBACK_2(RHGameGrid::onTouchMoved, this);
 	listener->onTouchEnded = CC_CALLBACK_2(RHGameGrid::onTouchEnded, this);
+	listener2->onKeyPressed = CC_CALLBACK_2(RHGameGrid::onKeyBoardPressed, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener2, this);
 
 	// here based on the level data we will initialise a grid accordingly. 
-	auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false,RHGridVector(0,0));
+	// time to initialise the grid using the algorithm. 
+	for (int i = 0; i < theState.getNumberOfVehicles(); i++) 
+	{
+		this->addChild(theState.getVehicle(i), 1);
+	}
+
+
+
+
+	/*auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false,RHGridVector(0,0));
 	auto carSprite2 = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false, RHGridVector(0,0));
 	carSprite2->setPosition(cocos2d::Vec2(120, 125));
 	this->addChild(carSprite,  1);
-	this->addChild(carSprite2, 1);
+	this->addChild(carSprite2, 1);*/
 }
 
 bool RHGameGrid::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
@@ -99,4 +110,17 @@ void RHGameGrid::onTouchEnded(cocos2d::Touch* touchData, cocos2d::Event* event)
 
 		selectedCar = nullptr;
 	}
+}
+
+void RHGameGrid::onKeyBoardPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event * event)
+{
+	if (keyCode == EventKeyboard::KeyCode::KEY_ESCAPE) 
+	{
+		Director::getInstance()->popScene();
+	}
+}
+
+void RHGameGrid::setLevelState(RHLevelState levelState) 
+{
+	theState = levelState;
 }

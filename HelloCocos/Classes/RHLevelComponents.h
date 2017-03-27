@@ -31,7 +31,7 @@ public:
 
 	void init();
 
-	void getVehicle(int vehicleIndex);
+	RHCar* getVehicle(int vehicleIndex);
 	int  getNumberOfVehicles();
 
 

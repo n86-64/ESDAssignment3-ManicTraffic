@@ -8,9 +8,9 @@ void RHLevelState::init()
 {
 }
 
-void RHLevelState::getVehicle(int vehicleIndex)
+RHCar* RHLevelState::getVehicle(int vehicleIndex)
 {
-
+	return theCars[vehicleIndex];
 }
 
 int RHLevelState::getNumberOfVehicles()

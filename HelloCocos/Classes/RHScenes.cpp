@@ -35,9 +35,10 @@ void RHDevScene::initGrid()
 {
 	if (levelGrid == nullptr) 
 	{
-		    levelGrid = RHGameGrid::create();
-			levelGrid->setPosition(Vec2(650, 350));
-			this->addChild(levelGrid, 1);
+		levelGrid = RHGameGrid::create();
+		levelGrid->setPosition(Vec2(650, 350));
+		levelGrid->initGrid();
+		this->addChild(levelGrid, 1);
 	}
 }
 
@@ -108,6 +109,8 @@ void RHGameScene::addMove()
 void RHGameScene::setLevel(std::string levelToOpen)
 {
 	levelFileSystem.openLevel(&currentLevel, levelToOpen);
+	levelGrid->setLevelState((RHLevelState)currentLevel);
+	levelGrid->initGrid();
 }
 
 void RHGameScene::update(float delta)

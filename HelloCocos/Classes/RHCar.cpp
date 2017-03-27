@@ -22,8 +22,8 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		car->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 		car->setPosition(cocos2d::Vec2(0, 0));
 		//car->setFlippedX(false);
-		car->setPosition(cocos2d::Vec2(120 + 210, 125));
-		car->gridPosition.setXY(1, 3);
+		//car->setPosition(cocos2d::Vec2(120 + 210, 125));
+		//car->gridPosition.setXY(1, 3);
 		car->autorelease();
 		car->initCar();
 		

@@ -15,6 +15,7 @@ contexts.
 #pragma once
 #include "cocos2d.h"
 #include "RHCar.h"
+#include "RHLevelComponents.h"
 
 // TODO - add refrences to RHLevel and RHLevelState classes to allow the grid to be constructed.
 
@@ -29,13 +30,18 @@ public:
 	static RHGameGrid* create(); // todo add info to fill out the grid.
 
 	void initGrid();
+	void setLevelState(RHLevelState levelState);
 
 	// put events here for collision.
 	bool onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touchData, cocos2d::Event* event);
 
+	void onKeyBoardPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event);
+
 private: 
 	RHCar* selectedCar = nullptr;
+	RHLevelState theState;
+
 	void getAndPlaceVehicles();
 };
