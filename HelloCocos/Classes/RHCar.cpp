@@ -11,7 +11,7 @@ USING_NS_CC;
 // the pivot will be located half way between the diffrence of the two cells with the car rotated according to 
 // the direction. 
 
-RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMovementFree)
+RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMovementFree, RHGridVector carPosition)
 {
 	std::string spritePath = "red2w.png";
 	RHCar* car = new RHCar();
@@ -54,6 +54,16 @@ RHGridVector RHCar::getGridPosition()
 void RHCar::setGridPosition(RHGridVector newPos)
 {
 	this->gridPosition = newPos;
+}
+
+void RHCar::setVehicleType(RHCarTypes carType)
+{
+	vehicleType = carType;
+}
+
+void RHCar::setVehicleDirection(RHCarDirections carDirection)
+{
+	vehicleDirection = carDirection;
 }
 
 // allows us to select and move objects. 

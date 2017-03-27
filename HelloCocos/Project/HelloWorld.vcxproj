@@ -156,6 +156,7 @@ xcopy "$(SolutionDir)\cocos2d\pdb\$(PlatformToolset)\$(Configuration)\*.pdb" "$(
     <ClCompile Include="..\Classes\RHMainMenu.cpp" />
     <ClCompile Include="..\Classes\RHScenes.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RHLevelParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />

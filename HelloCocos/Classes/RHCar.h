@@ -18,7 +18,8 @@ enum RHCarTypes
 {
 	CAR_TARGET = 0,
 	CAR_NORMAL,
-	CAR_LORRY
+	CAR_LORRY,
+	CAR_UNDEF
 };
 
 // TODO - will need to see if this works or not. 
@@ -26,8 +27,9 @@ enum RHCarDirections
 {
 	DIR_X_POSITIVE = 1,
 	DIR_X_NEGATIVE = -1,
-	DIR_Y_POSITIVE = 1,
-	DIR_Y_NEGATIVE = -1,
+	DIR_Y_POSITIVE = 2,
+	DIR_Y_NEGATIVE = -2,
+	DIR_UNDEF = 0
 };
 
 class RHCar : public cocos2d::Sprite {
@@ -35,7 +37,7 @@ public:
 	RHCar() = default;
 	~RHCar() = default;
 
-	static RHCar* create(RHCarTypes carType, RHCarDirections carDirections, bool isMovementFree);
+	static RHCar* create(RHCarTypes carType, RHCarDirections carDirections, bool isMovementFree, RHGridVector carPosition);
 
 	// create event handlers and initialise sprite and position. 
 	void initCar();
@@ -45,6 +47,8 @@ public:
 	// used to set our position.
 	RHGridVector getGridPosition();
 	void setGridPosition(RHGridVector newPos);
+	void setVehicleType(RHCarTypes carType);
+	void setVehicleDirection(RHCarDirections carDirection);
 
 	// add the mouse events here. Dont need to add them yet as we havnt built the rest of the editor. 
 	bool onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event);
@@ -54,6 +58,9 @@ public:
 private: 
 	RHGridVector gridPosition;
 	bool isVehicleCurrentlySelected = false;
+	RHCarTypes vehicleType = CAR_UNDEF;
+	RHCarDirections vehicleDirection = DIR_UNDEF;
+
 	bool isGoingToCollide(cocos2d::Vec2 mouseDelta);
 
 	// create functions to initialise.

@@ -25,6 +25,9 @@
     <ClCompile Include="..\Classes\RHLevelComponents.cpp">
       <Filter>src\Storage</Filter>
     </ClCompile>
+    <ClCompile Include="RHLevelParser.cpp">
+      <Filter>src\Storage\FileIO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

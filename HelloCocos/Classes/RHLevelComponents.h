@@ -48,6 +48,10 @@ public:
 	// Sets up a blank level
 	RHLevel();
 
+	void setLevelName(std::string newName);
+	void setAuthor(std::string newAuthor);
+	void setLevelDifficulty(RHGameDifficulty difficulty);
+
 	// TODO - add functions to get the information later. 
 private:
 	std::string       levelName;

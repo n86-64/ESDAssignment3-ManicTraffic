@@ -46,7 +46,7 @@ void RHDevScene::initGrid()
 
 
 // The Game Scene.
-RHGameScene * RHGameScene::createScene()
+RHGameScene* RHGameScene::createScene()
 {
 	return RHGameScene::create();
 }

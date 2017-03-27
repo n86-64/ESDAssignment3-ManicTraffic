@@ -18,7 +18,6 @@ bool RHMainMenu::init()
 		return false;
 	}
 
-
 	initMenuBackdropAndTitle();
 	initMusic();
 	createMenuOptions();
@@ -59,7 +58,9 @@ void RHMainMenu::createMenuOptions()
 
 void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 {
-
+	// for debugging. 
+	RHLevel test;
+	levelParser.openLevel(&test,"testLevel.mtlf");
 }
 
 void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
@@ -70,7 +71,6 @@ void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
 
 void RHMainMenu::openSettingsClicked(cocos2d::Ref* sender)
 {
-
 }
 
 void RHMainMenu::quitClicked(cocos2d::Ref* sender)
