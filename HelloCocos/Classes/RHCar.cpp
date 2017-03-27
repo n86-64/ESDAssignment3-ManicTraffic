@@ -100,20 +100,11 @@ void RHCar::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 	if (this->isVehicleCurrentlySelected && r.containsPoint(height)) 
 	{
 		Vec2 mouseDelta = touchData->getDelta();
-		//int gridPosDelta = mouseDelta.x / 10;
-		// add collision detection here.
-		// TODO - add system to place cars during editing. 
 
-		// snap the position according to the direction to the 
-		//this->setPosition(Vec2(this->getPositionX() + (gridPosDelta * 70), this->getPositionY()));
-
-		
 		// use this for motion instead. placement will use grid position. (treat getDelta aas a velocity and use a velocity function
-		// to prevent collisions)
+		// to prevent collisions).
 
-		// here we will check to see if we will intersect with a rectangle and if so we dont change our position.
-		// we may need to add this velocaty function. 
-		// if we get the delta when this occurs that could work. 
+		// here we will add the code for moving the vehicles. 
 
 
 		if (canMove) 
@@ -132,32 +123,32 @@ void RHCar::onTouchEnded(cocos2d::Touch * touchData, cocos2d::Event * event)
 	this->isVehicleCurrentlySelected = false;
 }
 
-bool RHCar::isGoingToCollide(Vec2 mouseDelta)
-{
-	Vec2 newPosition = Vec2(this->getPositionX() + mouseDelta.x, this->getPositionY());
-
-	auto height = this->convertToNodeSpace(newPosition);
-	cocos2d::Rect r = cocos2d::Rect(0, 0, this->getContentSize().width, this->getContentSize().height);
-
-	cocos2d::Rect collisionRect;
-
-	if (RHGameGrid* theGrid = (RHGameGrid*)this->getParent())
-	{
-		for (auto i : theGrid->getChildren()) 
-		{
-			collisionRect = cocos2d::Rect(i->getPosition().x - (i->getContentSize().width/2), i->getPosition().y - (i->getContentSize().height / 2), i->getContentSize().width, i->getContentSize().height);
-
-			if (!collisionRect.equals(r)) 
-			{
-				if (collisionRect.containsPoint(height)) 
-				{
-					return true;
-				}
-			}
-		}
-	}
-
-	return false;
-}
+//bool RHCar::isGoingToCollide(Vec2 mouseDelta)
+//{
+//	Vec2 newPosition = Vec2(this->getPositionX() + mouseDelta.x, this->getPositionY());
+//
+//	auto height = this->convertToNodeSpace(newPosition);
+//	cocos2d::Rect r = cocos2d::Rect(0, 0, this->getContentSize().width, this->getContentSize().height);
+//
+//	cocos2d::Rect collisionRect;
+//
+//	if (RHGameGrid* theGrid = (RHGameGrid*)this->getParent())
+//	{
+//		for (auto i : theGrid->getChildren()) 
+//		{
+//			collisionRect = cocos2d::Rect(i->getPosition().x - (i->getContentSize().width/2), i->getPosition().y - (i->getContentSize().height / 2), i->getContentSize().width, i->getContentSize().height);
+//
+//			if (!collisionRect.equals(r)) 
+//			{
+//				if (collisionRect.containsPoint(height)) 
+//				{
+//					return true;
+//				}
+//			}
+//		}
+//	}
+//
+//	return false;
+//}
 
 

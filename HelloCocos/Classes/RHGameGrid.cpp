@@ -1,3 +1,4 @@
+#include "RHScenes.h"
 #include "RHGameGrid.h"
 
 USING_NS_CC;
@@ -23,6 +24,7 @@ void RHGameGrid::initGrid()
 	auto listener = cocos2d::EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(RHGameGrid::onTouchBegin, this);
 	listener->onTouchMoved = CC_CALLBACK_2(RHGameGrid::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(RHGameGrid::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	// here based on the level data we will initialise a grid accordingly. 
@@ -70,6 +72,7 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 				{
 					// stop the vehicle from moving.
 					selectedCar->setPositionX(selectedCar->getPositionX() - ((mouseDelta.x / abs(mouseDelta.x)) * 15));
+					selectedCar->canMove = false;
 					cocos2d::log("Yay we can now detect collisions and change the position accordingly");
 				}
 				else
@@ -81,3 +84,19 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 	}
 }
 
+void RHGameGrid::onTouchEnded(cocos2d::Touch* touchData, cocos2d::Event* event) 
+{
+	RHGameScene* localPtr;
+	if (selectedCar != nullptr) 
+	{
+		localPtr = dynamic_cast<RHGameScene*>(this->getParent());
+
+		if (localPtr != nullptr) 
+		{
+			localPtr->addMove();
+			localPtr = nullptr;
+		}
+
+		selectedCar = nullptr;
+	}
+}

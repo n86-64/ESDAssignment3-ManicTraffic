@@ -61,7 +61,7 @@ private:
 	RHCarTypes vehicleType = CAR_UNDEF;
 	RHCarDirections vehicleDirection = DIR_UNDEF;
 
-	bool isGoingToCollide(cocos2d::Vec2 mouseDelta);
+	// bool isGoingToCollide(cocos2d::Vec2 mouseDelta);
 
 	// create functions to initialise.
 	// should cars have a movement mode. (Yes as its a single bit if a bool).

@@ -100,8 +100,15 @@ void RHGameScene::initUI()
 	this->addChild(movesLabel, 2);
 }
 
+void RHGameScene::addMove()
+{
+	numberOfMoves++;
+}
+
 void RHGameScene::update(float delta)
 {
 	levelTime += delta;
 	timeLabel->setString("Time - " + std::to_string(levelTime));
+	movesLabel->setString("Moves - " + std::to_string(numberOfMoves));
+
 }

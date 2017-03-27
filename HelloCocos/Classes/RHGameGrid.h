@@ -33,6 +33,7 @@ public:
 	// put events here for collision.
 	bool onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event);
+	void onTouchEnded(cocos2d::Touch* touchData, cocos2d::Event* event);
 
 private: 
 	RHCar* selectedCar = nullptr;

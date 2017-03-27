@@ -45,6 +45,7 @@ public:
 	void initGrid();
 	void initUI();
 
+	void addMove();
 	// TODO - add routienes to initialise the game according to the 
 	// level that the user is playing.
 
