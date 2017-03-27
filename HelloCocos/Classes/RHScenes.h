@@ -49,9 +49,12 @@ public:
 	// TODO - add routienes to initialise the game according to the 
 	// level that the user is playing.
 
+	void setLevel(std::string levelToOpen);
+
 	void update(float delta) override;
 
 private:
+	RHLevel currentLevel;
 	cocos2d::Label* timeLabel = nullptr;
 	cocos2d::Label* movesLabel = nullptr;
 

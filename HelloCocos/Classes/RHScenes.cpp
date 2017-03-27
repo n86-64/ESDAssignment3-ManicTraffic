@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-// The Dev\Editor Scene. 
+//---------------------------------------- The editor Scene where the levels are made ----------------------------------------------------//
 RHDevScene* RHDevScene::createScene()
 {
 	return RHDevScene::create();
@@ -44,7 +44,7 @@ void RHDevScene::initGrid()
 
 
 
-// The Game Scene.
+//----------------------------------------The Game Scene where the game is played----------------------------------------------------//
 RHGameScene* RHGameScene::createScene()
 {
 	return RHGameScene::create();
@@ -105,10 +105,14 @@ void RHGameScene::addMove()
 	numberOfMoves++;
 }
 
+void RHGameScene::setLevel(std::string levelToOpen)
+{
+	levelFileSystem.openLevel(&currentLevel, levelToOpen);
+}
+
 void RHGameScene::update(float delta)
 {
 	levelTime += delta;
 	timeLabel->setString("Time - " + std::to_string(levelTime));
 	movesLabel->setString("Moves - " + std::to_string(numberOfMoves));
-
 }

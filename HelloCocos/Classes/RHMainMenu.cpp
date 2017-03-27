@@ -62,9 +62,10 @@ void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 	//RHLevel test;
 	//levelParser.openLevel(&test,"testLevel.mtlf");
 	// -- endl --
-
+	RHGameScene* gameScene = RHGameScene::createScene();
 	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-	Director::getInstance()->pushScene(TransitionFade::create(0.5, (cocos2d::Scene*)RHGameScene::createScene()));
+	gameScene->setLevel("testLevel.mtlf");
+	Director::getInstance()->pushScene(TransitionFade::create(0.5, gameScene));
 }
 
 void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
