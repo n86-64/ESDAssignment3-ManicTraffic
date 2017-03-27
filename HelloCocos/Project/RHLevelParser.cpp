@@ -5,8 +5,7 @@
 
 
 RHFileParser::RHFileParser()
-{
-}
+{}
 
 void RHFileParser::openLevel(RHLevel* dataDestination, std::string fileLocation)
 {

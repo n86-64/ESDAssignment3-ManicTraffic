@@ -41,8 +41,19 @@ public:
 
 	bool init() override;
 
+	void initBackgroundAndWindows();
+	void initGrid();
+	void initUI();
+
 	// TODO - add routienes to initialise the game according to the 
 	// level that the user is playing.
+
+private:
+	cocos2d::Label* timeLabel = nullptr;
+	cocos2d::Label* movesLabel = nullptr;
+
+	float levelTime = 0.0f; // time in secounds.
+	int numberOfMoves = 0;
 
 	CREATE_FUNC(RHGameScene)
 };

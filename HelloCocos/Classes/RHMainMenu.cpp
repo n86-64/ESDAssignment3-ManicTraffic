@@ -58,9 +58,13 @@ void RHMainMenu::createMenuOptions()
 
 void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 {
-	// for debugging. 
-	RHLevel test;
-	levelParser.openLevel(&test,"testLevel.mtlf");
+	//-- for debugging. --
+	//RHLevel test;
+	//levelParser.openLevel(&test,"testLevel.mtlf");
+	// -- endl --
+
+	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	Director::getInstance()->pushScene(TransitionFade::create(0.5, (cocos2d::Scene*)RHGameScene::createScene()));
 }
 
 void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
