@@ -48,6 +48,8 @@ public:
 	// TODO - add routienes to initialise the game according to the 
 	// level that the user is playing.
 
+	void update(float delta) override;
+
 private:
 	cocos2d::Label* timeLabel = nullptr;
 	cocos2d::Label* movesLabel = nullptr;

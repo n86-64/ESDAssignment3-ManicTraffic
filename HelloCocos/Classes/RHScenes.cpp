@@ -82,6 +82,8 @@ void RHGameScene::initGrid()
 		levelGrid->setPosition(Vec2(650, 350));
 		this->addChild(levelGrid, 1);
 	}
+
+	this->scheduleUpdate();
 }
 
 void RHGameScene::initUI()
@@ -96,4 +98,10 @@ void RHGameScene::initUI()
 
 	this->addChild(timeLabel, 2);
 	this->addChild(movesLabel, 2);
+}
+
+void RHGameScene::update(float delta)
+{
+	levelTime += delta;
+	timeLabel->setString("Time - " + std::to_string(levelTime));
 }
