@@ -57,6 +57,9 @@
     <ClInclude Include="..\Classes\RHGameGrid.h">
       <Filter>src\Game Objects\Grid</Filter>
     </ClInclude>
+    <ClInclude Include="RHLevelParser.h">
+      <Filter>src\Storage\FileIO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="resource">

@@ -35,6 +35,6 @@ public:
 	void onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event);
 
 private: 
-	RHCar* selectedCar;
+	RHCar* selectedCar = nullptr;
 	void getAndPlaceVehicles();
 };

@@ -59,20 +59,23 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 	// here we will check to see if it collides with any objects. 
 	for (auto i : this->getChildren()) 
 	{
-		if (!(i->getBoundingBox().equals(selectedCar->getBoundingBox()))) 
+		if (selectedCar != nullptr) 
 		{
-			// TODO - use precalculated collision rather than rectangle intersection.
-			// This is good for now but will need to be changed.
-			// That is check before we move. 
-			if (i->getBoundingBox().intersectsRect(selectedCar->getBoundingBox())) 
+			if (!(i->getBoundingBox().equals(selectedCar->getBoundingBox())))
 			{
-				// stop the vehicle from moving.
-				selectedCar->setPositionX(selectedCar->getPositionX() - ((mouseDelta.x/abs(mouseDelta.x)) * 15));
-				cocos2d::log("Yay we can now detect collisions and change the position accordingly");
-			}
-			else 
-			{
-				selectedCar->canMove = true;
+				// TODO - use precalculated collision rather than rectangle intersection.
+				// This is good for now but will need to be changed.
+				// That is check before we move. 
+				if (i->getBoundingBox().intersectsRect(selectedCar->getBoundingBox()))
+				{
+					// stop the vehicle from moving.
+					selectedCar->setPositionX(selectedCar->getPositionX() - ((mouseDelta.x / abs(mouseDelta.x)) * 15));
+					cocos2d::log("Yay we can now detect collisions and change the position accordingly");
+				}
+				else
+				{
+					selectedCar->canMove = true;
+				}
 			}
 		}
 	}
