@@ -16,6 +16,9 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 	std::string spritePath = "red2w.png";
 	RHCar* car = new RHCar();
 
+	// determine the sprite that we need to set. 
+	spritePath = car->getSpritePath(carType);
+
 	if (car->initWithSpriteFrameName(spritePath)) 
 	{
 		car->setScale(0.65f);
@@ -24,6 +27,11 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		//car->setFlippedX(false);
 		//car->setPosition(cocos2d::Vec2(120 + 210, 125));
 		//car->gridPosition.setXY(1, 3);
+
+		// determine the sprite and set the position. 
+
+
+
 		car->autorelease();
 		car->initCar();
 		
@@ -121,6 +129,20 @@ void RHCar::onTouchEnded(cocos2d::Touch * touchData, cocos2d::Event * event)
 {
 	// todo - add code that will snap the vehicle to the nearest position when in edit mode. 
 	this->isVehicleCurrentlySelected = false;
+}
+
+std::string RHCar::getSpritePath(RHCarTypes carType)
+{
+	// TODO - add more code to select vehicle designs properly. 
+	switch (carType) 
+	{
+	case CAR_TARGET:
+		return "red2w.png";
+	case CAR_NORMAL:
+		return "dark2h.png";
+	case CAR_LORRY:
+		return "purple3h.png";
+	}
 }
 
 //bool RHCar::isGoingToCollide(Vec2 mouseDelta)

@@ -61,6 +61,8 @@ private:
 	RHCarTypes vehicleType = CAR_UNDEF;
 	RHCarDirections vehicleDirection = DIR_UNDEF;
 
+	std::string getSpritePath(RHCarTypes carType); 
+
 	// bool isGoingToCollide(cocos2d::Vec2 mouseDelta);
 
 	// create functions to initialise.
