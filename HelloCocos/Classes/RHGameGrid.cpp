@@ -19,6 +19,7 @@ RHGameGrid* RHGameGrid::create()
 
 void RHGameGrid::initGrid()
 {
+	srand(time(NULL));
 	// check to see if we can do collision here
 	auto listener = cocos2d::EventListenerTouchOneByOne::create();
 	auto listener2 = cocos2d::EventListenerKeyboard::create();

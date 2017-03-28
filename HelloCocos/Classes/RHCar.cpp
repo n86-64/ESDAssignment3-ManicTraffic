@@ -24,12 +24,37 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		car->setScale(0.65f);
 		car->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
 		car->setPosition(cocos2d::Vec2(0, 0));
+
+		if (carType == CAR_LORRY) 
+		{
+			car->setRotation(90.0f);
+		}
+
+		car->setGridPosition(carPosition);
+
 		//car->setFlippedX(false);
 		//car->setPosition(cocos2d::Vec2(120 + 210, 125));
 		//car->gridPosition.setXY(1, 3);
 
 		// determine the sprite and set the position. 
+		switch (carDirection) 
+		{
+		case DIR_X_NEGATIVE:
+			car->setRotation(car->getRotation() + 180.0f);
+			break;
+		default:
+			break;
+		}
 
+		// place the cars and lorries here. 
+		if (carPosition.getX() != 1) 
+		{
+			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 2) * 70), 125 + ((car->getGridPosition().getY() - 1) * 72)));
+		}
+		else 
+		{
+			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 1) * 70), 125 + ((car->getGridPosition().getY() - 1) * 72)));
+		}
 
 
 		car->autorelease();
@@ -56,7 +81,7 @@ void RHCar::initCar()
 RHGridVector RHCar::getGridPosition()
 {
 	// return the grid position. (Useful for debug maybe)
-	return RHGridVector();
+	return gridPosition;
 }
 
 void RHCar::setGridPosition(RHGridVector newPos)
@@ -132,14 +157,23 @@ void RHCar::onTouchEnded(cocos2d::Touch * touchData, cocos2d::Event * event)
 }
 
 std::string RHCar::getSpritePath(RHCarTypes carType)
-{
-	// TODO - add more code to select vehicle designs properly. 
+{ 
+	std::string carColour;
 	switch (carType) 
 	{
 	case CAR_TARGET:
 		return "red2w.png";
 	case CAR_NORMAL:
-		return "dark2h.png";
+		switch (rand() % 2) 
+		{
+		case 0:
+			carColour = "black2w.png";
+			break;
+		case 1:
+			carColour = "blue2w.png";
+			break;
+		}
+		return carColour;
 	case CAR_LORRY:
 		return "purple3h.png";
 	}
