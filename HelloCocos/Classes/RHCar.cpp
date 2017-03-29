@@ -6,15 +6,18 @@
 USING_NS_CC;
 
 // The procedral placement of cars should be based on pivot points hence we can then rotate the cars:
-// Base position is (120,125) and to translate the position by (70,70) when moving the car.
+// Base position is (120,125) and to translate the position by (70,72 (Due to collision issues)) when moving the car.
 // based on the direction we will determine the pivot we need.
 // the pivot will be located half way between the diffrence of the two cells with the car rotated according to 
 // the direction. 
+
+// Nathan Butt (n86) - All vehicles will be placed in a positiove direction all the time. (due to certain bugs which I may fix I may not.)
 
 RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMovementFree, RHGridVector carPosition)
 {
 	std::string spritePath = "red2w.png";
 	RHCar* car = new RHCar();
+	Vec2 offset;
 
 	// determine the sprite that we need to set. 
 	spritePath = car->getSpritePath(carType);
@@ -28,19 +31,35 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		if (carType == CAR_LORRY) 
 		{
 			car->setRotation(90.0f);
+			car->setGridLimitsX(RHGridVector(370, 150));
+			offset.x = -35.0f;
+		}
+		else 
+		{
+			if (carPosition.getY() != 4) 
+			{
+				car->setGridLimitsX(RHGridVector(409, 117));
+			}
+			else 
+			{
+				car->setGridLimitsX(RHGridVector(609, 117));
+			}
 		}
 
 		car->setGridPosition(carPosition);
-
+		car->setVehicleDirection(carDirection);
 		//car->setFlippedX(false);
 		//car->setPosition(cocos2d::Vec2(120 + 210, 125));
 		//car->gridPosition.setXY(1, 3);
 
-		// determine the sprite and set the position. 
 		switch (carDirection) 
 		{
 		case DIR_X_NEGATIVE:
 			car->setRotation(car->getRotation() + 180.0f);
+			offset.x = 55.0f;
+			break;
+		case DIR_Y_POSITIVE:
+			car->setRotation(car->getRotation() - 90.0f);
 			break;
 		default:
 			break;
@@ -49,11 +68,11 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		// place the cars and lorries here. 
 		if (carPosition.getX() != 1) 
 		{
-			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 2) * 70), 125 + ((car->getGridPosition().getY() - 1) * 72)));
+			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 2) * 70) + offset.x, 125 + ((car->getGridPosition().getY() - 1) * 72)));
 		}
 		else 
 		{
-			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 1) * 70), 125 + ((car->getGridPosition().getY() - 1) * 72)));
+			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 1) * 70) + offset.x, 125 + ((car->getGridPosition().getY() - 1) * 72)));
 		}
 
 
@@ -99,6 +118,11 @@ void RHCar::setVehicleDirection(RHCarDirections carDirection)
 	vehicleDirection = carDirection;
 }
 
+void RHCar::setGridLimitsX(RHGridVector gridLimit)
+{
+	gridLimits = gridLimit;
+}
+
 // allows us to select and move objects. 
 bool RHCar::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 {
@@ -114,11 +138,10 @@ bool RHCar::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 	if (r.containsPoint(height)) 
 	{
 		this->isVehicleCurrentlySelected = true;
-		cocos2d::log("YAY I work");
+	//	cocos2d::log("YAY I work");
 		return true;
 	}
 
-	cocos2d::log("coordinate of object - x = %f y = %f ", this->getPosition().x, this->getPositionY());
 	return true;
 }
 
@@ -139,12 +162,20 @@ void RHCar::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 
 		// here we will add the code for moving the vehicles. 
 
-
 		if (canMove) 
 		{
-			if ((!((this->getPositionX() + mouseDelta.x) > 408.5f)) && (!((this->getPositionX() + mouseDelta.x) < 117.0f)))
+			if ((!((this->getPositionX() + mouseDelta.x) > gridLimits.getX() )) && (!((this->getPositionX() + mouseDelta.x) < gridLimits.getY())))
 			{
-				this->setPositionX(this->getPositionX() + mouseDelta.x);
+				if (this->vehicleDirection == DIR_X_POSITIVE || this->vehicleDirection == DIR_X_NEGATIVE)
+				{
+					this->setPositionX(this->getPositionX() + mouseDelta.x);
+				}
+				else 
+				{
+					this->setPositionY(this->getPositionY() + mouseDelta.y);
+				}
+
+				// cocos2d::log("Position - x = %f, y = %f", this->getPositionX(), this->getPositionY());
 			}
 		}
 	}
@@ -175,7 +206,16 @@ std::string RHCar::getSpritePath(RHCarTypes carType)
 		}
 		return carColour;
 	case CAR_LORRY:
-		return "purple3h.png";
+		switch (rand() % 2) 
+		{
+		case 0:
+			carColour = "purple3h.png";
+			break;
+		case 1:
+			carColour = "yellow3h.png";
+			break;
+		}
+		return carColour;
 	}
 }
 

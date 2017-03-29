@@ -43,12 +43,14 @@ public:
 	void initCar();
 
 	bool canMove = true;
+	bool hasMoved = false;
 
 	// used to set our position.
 	RHGridVector getGridPosition();
 	void setGridPosition(RHGridVector newPos);
 	void setVehicleType(RHCarTypes carType);
 	void setVehicleDirection(RHCarDirections carDirection);
+	void setGridLimitsX(RHGridVector gridLimit);
 
 	// add the mouse events here. Dont need to add them yet as we havnt built the rest of the editor. 
 	bool onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event);
@@ -57,6 +59,7 @@ public:
 
 private: 
 	RHGridVector gridPosition;
+	RHGridVector gridLimits; 
 	bool isVehicleCurrentlySelected = false;
 	RHCarTypes vehicleType = CAR_UNDEF;
 	RHCarDirections vehicleDirection = DIR_UNDEF;

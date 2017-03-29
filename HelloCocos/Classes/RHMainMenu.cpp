@@ -97,4 +97,9 @@ void RHMainMenu::initMenuBackdropAndTitle()
 	title->setColor(cocos2d::Color3B::BLACK);
 	title->enableShadow();
 	this->addChild(title, 1);
+
+	cocos2d::Label* copyrightTag = Label::createWithTTF("(C) KnickNAC 2017 (Alpha build do not distribute)", "fonts/Burbin Casual NC.ttf", 20);
+	copyrightTag->setPosition(Vec2(1000, 50));
+	copyrightTag->setColor(cocos2d::Color3B::BLACK);
+	this->addChild(copyrightTag, 1);
 }

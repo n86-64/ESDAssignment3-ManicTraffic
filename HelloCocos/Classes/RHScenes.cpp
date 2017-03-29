@@ -106,6 +106,11 @@ void RHGameScene::addMove()
 	numberOfMoves++;
 }
 
+void RHGameScene::playWinSequense()
+{
+	cocos2d::log("Yay we win");
+}
+
 void RHGameScene::setLevel(std::string levelToOpen)
 {
 	levelFileSystem.openLevel(&currentLevel, levelToOpen);

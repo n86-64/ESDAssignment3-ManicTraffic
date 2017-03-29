@@ -3,6 +3,9 @@
 
 USING_NS_CC;
 
+// Known shippable (consider fixing but dont worry too much however we may need to change the collision system) 
+// - collision system is slightly broken hence we may have to do a point based collision system rather than (collision fixed - simple inverse of the users delta). 
+
 RHGameGrid* RHGameGrid::create()
 {
 	RHGameGrid* grid = new RHGameGrid();
@@ -38,8 +41,6 @@ void RHGameGrid::initGrid()
 	}
 
 
-
-
 	/*auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false,RHGridVector(0,0));
 	auto carSprite2 = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false, RHGridVector(0,0));
 	carSprite2->setPosition(cocos2d::Vec2(120, 125));
@@ -69,6 +70,7 @@ bool RHGameGrid::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 {
 	Vec2 mouseDelta = touchData->getDelta();
+	RHGameScene* currentScene = nullptr;
 
 	// here we will check to see if it collides with any objects. 
 	for (auto i : this->getChildren()) 
@@ -77,15 +79,24 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 		{
 			if (!(i->getBoundingBox().equals(selectedCar->getBoundingBox())))
 			{
-				// TODO - use precalculated collision rather than rectangle intersection.
-				// This is good for now but will need to be changed.
-				// That is check before we move. 
+				selectedCar->hasMoved = true;
 				if (i->getBoundingBox().intersectsRect(selectedCar->getBoundingBox()))
 				{
 					// stop the vehicle from moving.
-					selectedCar->setPositionX(selectedCar->getPositionX() - ((mouseDelta.x / abs(mouseDelta.x)) * 15));
+					selectedCar->setPositionX(selectedCar->getPositionX() - mouseDelta.x);
 					selectedCar->canMove = false;
-					cocos2d::log("Yay we can now detect collisions and change the position accordingly");
+				}
+				else if(selectedCar->getPositionX() > 412.0f) 
+				{
+					// add win sequense here. 
+					currentScene = static_cast<RHGameScene*>(this->getParent());
+					if (currentScene != nullptr) 
+					{
+						currentScene->playWinSequense();
+						currentScene = nullptr;
+					}
+
+					cocos2d::log("Add logic for the win here.");
 				}
 				else
 				{
@@ -99,7 +110,7 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 void RHGameGrid::onTouchEnded(cocos2d::Touch* touchData, cocos2d::Event* event) 
 {
 	RHGameScene* localPtr;
-	if (selectedCar != nullptr) 
+	if (selectedCar != nullptr && selectedCar->hasMoved) 
 	{
 		localPtr = dynamic_cast<RHGameScene*>(this->getParent());
 
@@ -109,6 +120,7 @@ void RHGameGrid::onTouchEnded(cocos2d::Touch* touchData, cocos2d::Event* event)
 			localPtr = nullptr;
 		}
 
+		selectedCar->hasMoved = false;
 		selectedCar = nullptr;
 	}
 }
