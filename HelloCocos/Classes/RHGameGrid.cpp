@@ -83,8 +83,15 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 				if (i->getBoundingBox().intersectsRect(selectedCar->getBoundingBox()))
 				{
 					// stop the vehicle from moving.
-					selectedCar->setPositionX(selectedCar->getPositionX() - mouseDelta.x);
-					selectedCar->canMove = false;
+					if (selectedCar->getVehicleDirection() == DIR_X_POSITIVE) 
+					{
+						selectedCar->setPositionX(selectedCar->getPositionX() - mouseDelta.x);
+					}
+					else 
+					{
+						selectedCar->setPositionY(selectedCar->getPositionY() - mouseDelta.y);
+					}
+					// selectedCar->canMove = false;
 				}
 				else if(selectedCar->getPositionX() > 412.0f) 
 				{

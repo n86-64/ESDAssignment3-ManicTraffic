@@ -18,6 +18,10 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 	std::string spritePath = "red2w.png";
 	RHCar* car = new RHCar();
 	Vec2 offset;
+	Vec2 baseVector(120,125);
+	Vec2 moveDelta(70, 72);
+	Vec2 moveMultiplier(2,1);
+	offset.y = 0;
 
 	// determine the sprite that we need to set. 
 	spritePath = car->getSpritePath(carType);
@@ -36,7 +40,7 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 		}
 		else 
 		{
-			if (carPosition.getY() != 4) 
+			if (carType != CAR_TARGET) 
 			{
 				car->setGridLimitsX(RHGridVector(409, 117));
 			}
@@ -48,9 +52,6 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 
 		car->setGridPosition(carPosition);
 		car->setVehicleDirection(carDirection);
-		//car->setFlippedX(false);
-		//car->setPosition(cocos2d::Vec2(120 + 210, 125));
-		//car->gridPosition.setXY(1, 3);
 
 		switch (carDirection) 
 		{
@@ -59,23 +60,34 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 			offset.x = 55.0f;
 			break;
 		case DIR_Y_POSITIVE:
+			if (carType == CAR_LORRY) 
+			{
+				offset.x += 35.0f;
+				offset.y -= 38.0f;
+			}
+
 			car->setRotation(car->getRotation() - 90.0f);
+			baseVector = Vec2(80, 160);
+			moveDelta = Vec2(72, 72);
+			moveMultiplier = Vec2(1, 1);
+			car->setGridLimitsX(RHGridVector(409, 79));
+			car->setGridLimitsY(RHGridVector(412, 195));
+			offset.y -= 72;
 			break;
 		default:
 			break;
 		}
 
-		// place the cars and lorries here. 
-		if (carPosition.getX() != 1) 
+		// place the cars and lorries here after calculating the base coordinates. 
+		if (carPosition.getX() != 1)
 		{
-			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 2) * 70) + offset.x, 125 + ((car->getGridPosition().getY() - 1) * 72)));
+			car->setPosition(Vec2(baseVector.x + ((car->getGridPosition().getX() - moveMultiplier.x) * moveDelta.x) + offset.x, baseVector.y + ((car->getGridPosition().getY() - 1) * moveDelta.y) + offset.y));
 		}
-		else 
+		else
 		{
-			car->setPosition(Vec2(120 + ((car->getGridPosition().getX() - 1) * 70) + offset.x, 125 + ((car->getGridPosition().getY() - 1) * 72)));
+			car->setPosition(Vec2(baseVector.x + ((car->getGridPosition().getX() - moveMultiplier.y) * moveDelta.x) + offset.x, baseVector.y + ((car->getGridPosition().getY() - 1) * moveDelta.y) + offset.y));
 		}
-
-
+ 
 		car->autorelease();
 		car->initCar();
 		
@@ -93,13 +105,11 @@ void RHCar::initCar()
 	touchListener->onTouchBegan = CC_CALLBACK_2(RHCar::onTouchBegin, this);
 	touchListener->onTouchMoved = CC_CALLBACK_2(RHCar::onTouchMoved, this);
 	touchListener->onTouchEnded = CC_CALLBACK_2(RHCar::onTouchEnded, this);
-
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 }
 
 RHGridVector RHCar::getGridPosition()
 {
-	// return the grid position. (Useful for debug maybe)
 	return gridPosition;
 }
 
@@ -120,10 +130,15 @@ void RHCar::setVehicleDirection(RHCarDirections carDirection)
 
 void RHCar::setGridLimitsX(RHGridVector gridLimit)
 {
-	gridLimits = gridLimit;
+	gridLimitsX = gridLimit;
 }
 
-// allows us to select and move objects. 
+void RHCar::setGridLimitsY(RHGridVector gridLimit)
+{
+	gradLimitsY = gridLimit;
+}
+
+// used to select and move the cars. 
 bool RHCar::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 {
 	// here we can select cars. 
@@ -133,12 +148,10 @@ bool RHCar::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 	// correct the location value so that it falls within the rectangle.
 	auto height = this->convertToNodeSpace(location);
 	cocos2d::Rect r = cocos2d::Rect(0,0, this->getContentSize().width, this->getContentSize().height);
-	//cocos2d::Rect r = this->getBoundingBox();
 
 	if (r.containsPoint(height)) 
 	{
 		this->isVehicleCurrentlySelected = true;
-	//	cocos2d::log("YAY I work");
 		return true;
 	}
 
@@ -161,22 +174,18 @@ void RHCar::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 		// to prevent collisions).
 
 		// here we will add the code for moving the vehicles. 
-
-		if (canMove) 
+		if(isOutsideGridLimits(vehicleDirection, mouseDelta))
 		{
-			if ((!((this->getPositionX() + mouseDelta.x) > gridLimits.getX() )) && (!((this->getPositionX() + mouseDelta.x) < gridLimits.getY())))
+			if (this->vehicleDirection == DIR_X_POSITIVE || this->vehicleDirection == DIR_X_NEGATIVE)
 			{
-				if (this->vehicleDirection == DIR_X_POSITIVE || this->vehicleDirection == DIR_X_NEGATIVE)
-				{
-					this->setPositionX(this->getPositionX() + mouseDelta.x);
-				}
-				else 
-				{
-					this->setPositionY(this->getPositionY() + mouseDelta.y);
-				}
-
-				// cocos2d::log("Position - x = %f, y = %f", this->getPositionX(), this->getPositionY());
+				this->setPositionX(this->getPositionX() + mouseDelta.x);
 			}
+			else
+			{
+				this->setPositionY(this->getPositionY() + mouseDelta.y);
+			}
+
+			cocos2d::log("Position - x = %f, y = %f", this->getPositionX(), this->getPositionY());
 		}
 	}
 }
@@ -219,32 +228,20 @@ std::string RHCar::getSpritePath(RHCarTypes carType)
 	}
 }
 
-//bool RHCar::isGoingToCollide(Vec2 mouseDelta)
-//{
-//	Vec2 newPosition = Vec2(this->getPositionX() + mouseDelta.x, this->getPositionY());
-//
-//	auto height = this->convertToNodeSpace(newPosition);
-//	cocos2d::Rect r = cocos2d::Rect(0, 0, this->getContentSize().width, this->getContentSize().height);
-//
-//	cocos2d::Rect collisionRect;
-//
-//	if (RHGameGrid* theGrid = (RHGameGrid*)this->getParent())
-//	{
-//		for (auto i : theGrid->getChildren()) 
-//		{
-//			collisionRect = cocos2d::Rect(i->getPosition().x - (i->getContentSize().width/2), i->getPosition().y - (i->getContentSize().height / 2), i->getContentSize().width, i->getContentSize().height);
-//
-//			if (!collisionRect.equals(r)) 
-//			{
-//				if (collisionRect.containsPoint(height)) 
-//				{
-//					return true;
-//				}
-//			}
-//		}
-//	}
-//
-//	return false;
-//}
+bool RHCar::isOutsideGridLimits(int axis, cocos2d::Vec2 mouseDelta)
+{
+	switch (axis) 
+	{
+	case 1:
+		return (!(this->getPositionX() + mouseDelta.x > gridLimitsX.getX())) && (!(this->getPositionX() + mouseDelta.x < gridLimitsX.getY()));
+	case 2:
+		return (!(this->getPositionY() + mouseDelta.y > gradLimitsY.getX())) && (!(this->getPositionY() + mouseDelta.y < gradLimitsY.getY()));
+	}
 
+	return true;
+}
 
+RHCarDirections RHCar::getVehicleDirection() 
+{
+	return vehicleDirection;
+}

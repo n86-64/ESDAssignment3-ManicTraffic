@@ -50,7 +50,9 @@ public:
 	void setGridPosition(RHGridVector newPos);
 	void setVehicleType(RHCarTypes carType);
 	void setVehicleDirection(RHCarDirections carDirection);
+	RHCarDirections getVehicleDirection();
 	void setGridLimitsX(RHGridVector gridLimit);
+	void setGridLimitsY(RHGridVector gridLimit);
 
 	// add the mouse events here. Dont need to add them yet as we havnt built the rest of the editor. 
 	bool onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event);
@@ -59,14 +61,15 @@ public:
 
 private: 
 	RHGridVector gridPosition;
-	RHGridVector gridLimits; 
+	RHGridVector gridLimitsX; 
+	RHGridVector gradLimitsY;
 	bool isVehicleCurrentlySelected = false;
 	RHCarTypes vehicleType = CAR_UNDEF;
 	RHCarDirections vehicleDirection = DIR_UNDEF;
 
 	std::string getSpritePath(RHCarTypes carType); 
 
-	// bool isGoingToCollide(cocos2d::Vec2 mouseDelta);
+	bool isOutsideGridLimits(int axis,cocos2d::Vec2 mouseDelta);
 
 	// create functions to initialise.
 	// should cars have a movement mode. (Yes as its a single bit if a bool).
