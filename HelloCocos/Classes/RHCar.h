@@ -70,7 +70,4 @@ private:
 	std::string getSpritePath(RHCarTypes carType); 
 
 	bool isOutsideGridLimits(int axis,cocos2d::Vec2 mouseDelta);
-
-	// create functions to initialise.
-	// should cars have a movement mode. (Yes as its a single bit if a bool).
 };

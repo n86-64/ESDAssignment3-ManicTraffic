@@ -15,7 +15,7 @@ USING_NS_CC;
 
 RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMovementFree, RHGridVector carPosition)
 {
-	std::string spritePath = "red2w.png";
+	std::string spritePath;
 	RHCar* car = new RHCar();
 	Vec2 offset;
 	Vec2 baseVector(120,125);
@@ -28,9 +28,8 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 
 	if (car->initWithSpriteFrameName(spritePath)) 
 	{
-		car->setScale(0.65f);
+		car->setScale(0.61f);
 		car->setAnchorPoint(cocos2d::Vec2(0.5, 0.5));
-		car->setPosition(cocos2d::Vec2(0, 0));
 
 		if (carType == CAR_LORRY) 
 		{
@@ -60,19 +59,21 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 			offset.x = 55.0f;
 			break;
 		case DIR_Y_POSITIVE:
-			if (carType == CAR_LORRY) 
-			{
-				offset.x += 35.0f;
-				offset.y -= 38.0f;
-			}
-
 			car->setRotation(car->getRotation() - 90.0f);
 			baseVector = Vec2(80, 160);
 			moveDelta = Vec2(72, 72);
 			moveMultiplier = Vec2(1, 1);
 			car->setGridLimitsX(RHGridVector(409, 79));
-			car->setGridLimitsY(RHGridVector(412, 195));
+			car->setGridLimitsY(RHGridVector(455, 160));
 			offset.y -= 72;
+
+			if (carType == CAR_LORRY)
+			{
+				offset.x += 35.0f;
+				offset.y -= 38.0f;
+				car->setGridLimitsY(RHGridVector(420, 190));
+			}
+
 			break;
 		default:
 			break;
@@ -185,7 +186,7 @@ void RHCar::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 				this->setPositionY(this->getPositionY() + mouseDelta.y);
 			}
 
-			cocos2d::log("Position - x = %f, y = %f", this->getPositionX(), this->getPositionY());
+			// cocos2d::log("Position - x = %f, y = %f", this->getPositionX(), this->getPositionY());
 		}
 	}
 }
