@@ -68,10 +68,9 @@ private:
 
 	void initiliseLevelInfo();
 	void addButtons();
-	void changeLevel(std::string levelToOpen); // TODO - define this function. 
 
 	// events for the buttons. 
-	void onNextLevelClicked(cocos2d::Ref* sender);
+	void onSkipLevelClicked(cocos2d::Ref* sender);
 	void onResetLevelClicked(cocos2d::Ref* sender);
 
 	CREATE_FUNC(RHGameScene)

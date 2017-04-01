@@ -25,6 +25,12 @@ void RHLevelState::addVehicle(RHCar* theCar)
 	numberOfCars++;
 }
 
+void RHLevelState::reset()
+{
+	numberOfCars = 0;
+	theCars.clear();
+}
+
 
 // The level data structure //
 RHLevel::RHLevel()

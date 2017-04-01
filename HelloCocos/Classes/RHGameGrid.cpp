@@ -35,17 +35,16 @@ void RHGameGrid::initGrid()
 
 	// here based on the level data we will initialise a grid accordingly. 
 	// time to initialise the grid using the algorithm. 
-	for (int i = 0; i < theState.getNumberOfVehicles(); i++) 
+	if (this->getChildrenCount() != 0) 
+	{
+		// TODO check if in our list we will need to delete all the cars manually or wheteher the system will handle it when we reset the level state. 
+		this->removeAllChildren();
+	}
+
+	for (int i = 0; i < theState.getNumberOfVehicles(); i++)
 	{
 		this->addChild(theState.getVehicle(i), 1);
 	}
-
-
-	/*auto carSprite = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false,RHGridVector(0,0));
-	auto carSprite2 = RHCar::create(CAR_NORMAL, DIR_X_POSITIVE, false, RHGridVector(0,0));
-	carSprite2->setPosition(cocos2d::Vec2(120, 125));
-	this->addChild(carSprite,  1);
-	this->addChild(carSprite2, 1);*/
 }
 
 void RHGameGrid::resetGrid()

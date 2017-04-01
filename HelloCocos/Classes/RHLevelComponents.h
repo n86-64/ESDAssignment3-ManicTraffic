@@ -36,6 +36,7 @@ public:
 
 
 	void addVehicle(RHCar* theCar);
+	void reset();
 
 private:
 	std::vector<RHCar*> theCars;

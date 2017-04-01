@@ -10,6 +10,7 @@ RHFileParser::RHFileParser()
 void RHFileParser::openLevel(RHLevel* dataDestination, std::string fileLocation)
 {
 	theLevel = dataDestination;
+	theLevel->reset();
 
 	std::fstream fileStream(fileLocation, std::fstream::in);
 	std::string lineContents;

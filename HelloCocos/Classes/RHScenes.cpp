@@ -159,8 +159,8 @@ void RHGameScene::addButtons()
 {
 	// here we will add buttons onto the menu.
 	auto nextLevelClicked = cocos2d::MenuItemLabel::create(
-		cocos2d::Label::create("Next Level", "fonts/arial.ttf", 20), 
-		CC_CALLBACK_1(RHGameScene::onNextLevelClicked, this)
+		cocos2d::Label::create("Skip Level", "fonts/arial.ttf", 20), 
+		CC_CALLBACK_1(RHGameScene::onSkipLevelClicked, this)
 		);
 
 	auto resetLevelClicked = cocos2d::MenuItemLabel::create(
@@ -174,9 +174,10 @@ void RHGameScene::addButtons()
 	this->addChild(gameMenu, 1);
 }
 
-void RHGameScene::onNextLevelClicked(cocos2d::Ref* sender)
+void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 {
 	// here we will add the options to allow the end user to skip the level
+	this->setLevel("level" + std::to_string(levelCounter + 1) + ".mtlf");
 	cocos2d::log("Hello we should load up the next level.");
 }
 
