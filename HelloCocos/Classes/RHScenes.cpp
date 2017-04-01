@@ -205,7 +205,12 @@ void RHGameScene::addButtons()
 void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 {
 	// here we will add the options to allow the end user to skip the level
-	this->setLevel("level" + std::to_string(levelCounter + 1) + ".mtlf");
+	if (!(levelCounter + 1 > 8)) 
+	{
+		numberOfMoves = 0;
+		levelTime = 0.0f;
+		this->setLevel("level" + std::to_string(levelCounter + 1) + ".mtlf");
+	}
 }
 
 void RHGameScene::onResetLevelClicked(cocos2d::Ref* sender)
