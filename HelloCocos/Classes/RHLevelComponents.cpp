@@ -34,6 +34,11 @@ RHLevel::RHLevel()
 	levelDifficulty = DIFFICULTY_NOT_SET;
 }
 
+std::string RHLevel::getLevelName()
+{
+	return levelName;
+}
+
 void RHLevel::setLevelName(std::string newName)
 {
 	levelName = newName;
@@ -47,4 +52,9 @@ void RHLevel::setAuthor(std::string newAuthor)
 void RHLevel::setLevelDifficulty(RHGameDifficulty difficulty) 
 {
 	levelDifficulty = difficulty;
+}
+
+RHGameDifficulty RHLevel::getLevelDifficulty() 
+{
+	return levelDifficulty;
 }

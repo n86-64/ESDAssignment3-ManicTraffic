@@ -59,8 +59,15 @@ private:
 	cocos2d::Label* timeLabel = nullptr;
 	cocos2d::Label* movesLabel = nullptr;
 
+	cocos2d::Label* levelName = nullptr;
+	cocos2d::Label* levelDifficulty = nullptr;
+
 	float levelTime = 0.0f; // time in secounds.
 	int numberOfMoves = 0;
+	int levelCounter = 0;
+
+	void initiliseLevelInfo();
+	void changeLevel(std::string levelToOpen); // TODO - define this function. 
 
 	CREATE_FUNC(RHGameScene)
 };

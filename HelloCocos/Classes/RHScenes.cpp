@@ -116,6 +116,11 @@ void RHGameScene::setLevel(std::string levelToOpen)
 	levelFileSystem.openLevel(&currentLevel, levelToOpen);
 	levelGrid->setLevelState((RHLevelState)currentLevel);
 	levelGrid->initGrid();
+
+	// place the level details in the corner to give information to the Player. 
+	initiliseLevelInfo();
+
+	levelCounter++;
 }
 
 void RHGameScene::update(float delta)
@@ -123,4 +128,26 @@ void RHGameScene::update(float delta)
 	levelTime += delta;
 	timeLabel->setString("Time - " + std::to_string(levelTime));
 	movesLabel->setString("Moves - " + std::to_string(numberOfMoves));
+}
+
+void RHGameScene::initiliseLevelInfo()
+{
+	std::string levelDifficultyString;
+	levelName = cocos2d::Label::create(currentLevel.getLevelName(), "fonts/Marker Felt.ttf", 24);
+	levelName->setPosition(Vec2(50, 600));
+	this->addChild(levelName);
+
+	switch (currentLevel.getLevelDifficulty()) 
+	{
+	case DIFFICULTY_EASY:
+		levelDifficultyString = "Easy";
+	case DIFFICULTY_MEDIUM:
+		levelDifficultyString = "Medium";
+	case DIFFICULTY_HARD:
+		levelDifficultyString = "Hard";
+	}
+
+	levelDifficulty = cocos2d::Label::create("Difficulty - " + levelDifficultyString, "fonts/Marker Felt.ttf", 24);
+	levelDifficulty->setPosition(Vec2(100, 550));
+	this->addChild(levelDifficulty);
 }

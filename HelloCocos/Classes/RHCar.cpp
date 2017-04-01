@@ -167,7 +167,7 @@ void RHCar::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 	auto height = this->convertToNodeSpace(location);
 	cocos2d::Rect r = cocos2d::Rect(0, 0, this->getContentSize().width, this->getContentSize().height);
 
-	if (this->isVehicleCurrentlySelected && r.containsPoint(height)) 
+	if (this->isVehicleCurrentlySelected) 
 	{
 		Vec2 mouseDelta = touchData->getDelta();
 

@@ -167,7 +167,6 @@ xcopy "$(SolutionDir)\cocos2d\pdb\$(PlatformToolset)\$(Configuration)\*.pdb" "$(
     <ClInclude Include="..\Classes\RHLevelComponents.h" />
     <ClInclude Include="..\Classes\RHMainMenu.h" />
     <ClInclude Include="..\Classes\RHScenes.h" />
-    <ClInclude Include="..\Classes\RHWidgetBase.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="RHLevelParser.h" />
   </ItemGroup>

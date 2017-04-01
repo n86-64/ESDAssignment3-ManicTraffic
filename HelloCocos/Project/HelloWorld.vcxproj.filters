@@ -45,9 +45,6 @@
     <ClInclude Include="..\Classes\RHScenes.h">
       <Filter>src\Scenes\Game Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\RHWidgetBase.h">
-      <Filter>src\UI</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\RHLevelComponents.h">
       <Filter>src\Storage</Filter>
     </ClInclude>
@@ -109,6 +106,9 @@
     </Filter>
     <Filter Include="src\Game Objects\Grid">
       <UniqueIdentifier>{ca89b70e-956c-45d7-ba51-b7dfbec2350d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI\Play Settings">
+      <UniqueIdentifier>{e3f2a404-a9dd-4554-b802-4c880c685968}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
