@@ -48,6 +48,20 @@ void RHGameGrid::initGrid()
 	this->addChild(carSprite2, 1);*/
 }
 
+void RHGameGrid::resetGrid()
+{
+	// here we will place the vehicles according to there grid position. 
+	RHCar* allCars;
+	for (auto i : this->getChildren()) 
+	{
+		allCars = static_cast<RHCar*>(i);
+		if (allCars != nullptr) 
+		{
+			allCars->resetCarPosition();
+		}
+	}
+}
+
 bool RHGameGrid::onTouchBegin(cocos2d::Touch* touchData, cocos2d::Event* event)
 {
 	// get the sprite that we are moving if any and store in a buffer. 

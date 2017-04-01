@@ -30,6 +30,7 @@ public:
 	static RHGameGrid* create(); // todo add info to fill out the grid.
 
 	void initGrid();
+	void resetGrid();
 	void setLevelState(RHLevelState levelState);
 
 	// put events here for collision.

@@ -89,6 +89,7 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 			car->setPosition(Vec2(baseVector.x + ((car->getGridPosition().getX() - moveMultiplier.y) * moveDelta.x) + offset.x, baseVector.y + ((car->getGridPosition().getY() - 1) * moveDelta.y) + offset.y));
 		}
  
+		car->setOriginalPosition(car->getPosition());
 		car->autorelease();
 		car->initCar();
 		
@@ -137,6 +138,63 @@ void RHCar::setGridLimitsX(RHGridVector gridLimit)
 void RHCar::setGridLimitsY(RHGridVector gridLimit)
 {
 	gradLimitsY = gridLimit;
+}
+
+void RHCar::setOriginalPosition(Vec2 pos)
+{
+	originalPosition = pos;
+}
+
+void RHCar::resetCarPosition()
+{
+	//Vec2 offset;
+	//Vec2 baseVector(120, 125);
+	//Vec2 moveDelta(70, 72);
+	//Vec2 moveMultiplier(2, 1);
+
+	//if (vehicleType == CAR_LORRY) 
+	//{
+	//	offset.x += 35.0f;
+	//	offset.y -= 38.0f;
+	//}
+
+	//switch (vehicleDirection)
+	//{
+	//case DIR_X_NEGATIVE:
+	//	this->setRotation(this->getRotation() + 180.0f);
+	//	offset.x = 55.0f;
+	//	break;
+	//case DIR_Y_POSITIVE:
+	//	this->setRotation(this->getRotation() - 90.0f);
+	//	baseVector = Vec2(80, 160);
+	//	moveDelta = Vec2(72, 72);
+	//	moveMultiplier = Vec2(1, 1);
+	//	this->setGridLimitsX(RHGridVector(409, 79));
+	//	this->setGridLimitsY(RHGridVector(455, 160));
+	//	offset.y -= 72;
+
+	//	if (vehicleType == CAR_LORRY)
+	//	{
+	//		offset.x += 35.0f;
+	//		offset.y -= 38.0f;
+	//		this->setGridLimitsY(RHGridVector(420, 190));
+	//	}
+
+	//	break;
+	//default:
+	//	break;
+	//}
+
+	//// place the cars and lorries here after calculating the base coordinates. 
+	//if (gridPosition.getX() != 1)
+	//{
+	//	this->setPosition(Vec2(baseVector.x + ((this->getGridPosition().getX() - moveMultiplier.x) * moveDelta.x) + offset.x, baseVector.y + ((this->getGridPosition().getY() - 1) * moveDelta.y) + offset.y));
+	//}
+	//else
+	//{
+	//	this->setPosition(Vec2(baseVector.x + ((this->getGridPosition().getX() - moveMultiplier.y) * moveDelta.x) + offset.x, baseVector.y + ((this->getGridPosition().getY() - 1) * moveDelta.y) + offset.y));
+	//}
+	this->setPosition(originalPosition);
 }
 
 // used to select and move the cars. 

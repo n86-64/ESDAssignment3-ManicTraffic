@@ -97,6 +97,8 @@ void RHGameScene::initUI()
 	movesLabel->setPosition(Vec2(800, 100));
 	movesLabel->setColor(Color3B::BLACK);
 
+	addButtons();
+
 	this->addChild(timeLabel, 2);
 	this->addChild(movesLabel, 2);
 }
@@ -120,6 +122,7 @@ void RHGameScene::setLevel(std::string levelToOpen)
 	// place the level details in the corner to give information to the Player. 
 	initiliseLevelInfo();
 
+
 	levelCounter++;
 }
 
@@ -134,7 +137,7 @@ void RHGameScene::initiliseLevelInfo()
 {
 	std::string levelDifficultyString;
 	levelName = cocos2d::Label::create(currentLevel.getLevelName(), "fonts/Marker Felt.ttf", 24);
-	levelName->setPosition(Vec2(50, 600));
+	levelName->setPosition(Vec2(55, 600));
 	this->addChild(levelName);
 
 	switch (currentLevel.getLevelDifficulty()) 
@@ -148,6 +151,39 @@ void RHGameScene::initiliseLevelInfo()
 	}
 
 	levelDifficulty = cocos2d::Label::create("Difficulty - " + levelDifficultyString, "fonts/Marker Felt.ttf", 24);
-	levelDifficulty->setPosition(Vec2(100, 550));
+	levelDifficulty->setPosition(Vec2(100, 570));
 	this->addChild(levelDifficulty);
+}
+
+void RHGameScene::addButtons()
+{
+	// here we will add buttons onto the menu.
+	auto nextLevelClicked = cocos2d::MenuItemLabel::create(
+		cocos2d::Label::create("Next Level", "fonts/arial.ttf", 20), 
+		CC_CALLBACK_1(RHGameScene::onNextLevelClicked, this)
+		);
+
+	auto resetLevelClicked = cocos2d::MenuItemLabel::create(
+		cocos2d::Label::create("Reset Level", "fonts/arial.ttf", 20),
+		CC_CALLBACK_1(RHGameScene::onResetLevelClicked, this)
+		);
+
+	auto gameMenu = Menu::create(nextLevelClicked, resetLevelClicked ,nullptr);
+	gameMenu->setPosition(Vec2(80, 200));
+	gameMenu->alignItemsVertically();
+	this->addChild(gameMenu, 1);
+}
+
+void RHGameScene::onNextLevelClicked(cocos2d::Ref* sender)
+{
+	// here we will add the options to allow the end user to skip the level
+	cocos2d::log("Hello we should load up the next level.");
+}
+
+void RHGameScene::onResetLevelClicked(cocos2d::Ref* sender)
+{
+	// here we will reset the level. 
+	numberOfMoves = 0;
+	levelTime = 0.0f;
+	levelGrid->resetGrid();
 }
