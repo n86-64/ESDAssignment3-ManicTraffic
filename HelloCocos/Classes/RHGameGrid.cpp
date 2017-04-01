@@ -22,23 +22,26 @@ RHGameGrid* RHGameGrid::create()
 
 void RHGameGrid::initGrid()
 {
-	srand(time(NULL));
-	// check to see if we can do collision here
-	auto listener = cocos2d::EventListenerTouchOneByOne::create();
-	auto listener2 = cocos2d::EventListenerKeyboard::create();
-	listener->onTouchBegan = CC_CALLBACK_2(RHGameGrid::onTouchBegin, this);
-	listener->onTouchMoved = CC_CALLBACK_2(RHGameGrid::onTouchMoved, this);
-	listener->onTouchEnded = CC_CALLBACK_2(RHGameGrid::onTouchEnded, this);
-	listener2->onKeyPressed = CC_CALLBACK_2(RHGameGrid::onKeyBoardPressed, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener2, this);
-
 	// here based on the level data we will initialise a grid accordingly. 
 	// time to initialise the grid using the algorithm. 
+	// events only initialised if we are creating grid for the first time. 
 	if (this->getChildrenCount() != 0) 
 	{
 		// TODO check if in our list we will need to delete all the cars manually or wheteher the system will handle it when we reset the level state. 
 		this->removeAllChildren();
+	}
+	else 
+	{
+		srand(time(NULL));
+		// check to see if we can do collision here
+		auto listener = cocos2d::EventListenerTouchOneByOne::create();
+		auto listener2 = cocos2d::EventListenerKeyboard::create();
+		listener->onTouchBegan = CC_CALLBACK_2(RHGameGrid::onTouchBegin, this);
+		listener->onTouchMoved = CC_CALLBACK_2(RHGameGrid::onTouchMoved, this);
+		listener->onTouchEnded = CC_CALLBACK_2(RHGameGrid::onTouchEnded, this);
+		listener2->onKeyPressed = CC_CALLBACK_2(RHGameGrid::onKeyBoardPressed, this);
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener2, this);
 	}
 
 	for (int i = 0; i < theState.getNumberOfVehicles(); i++)

@@ -115,12 +115,37 @@ void RHGameScene::playWinSequense()
 
 void RHGameScene::setLevel(std::string levelToOpen)
 {
+	std::string levelDifficultyString;
+
 	levelFileSystem.openLevel(&currentLevel, levelToOpen);
 	levelGrid->setLevelState((RHLevelState)currentLevel);
 	levelGrid->initGrid();
 
 	// place the level details in the corner to give information to the Player. 
-	initiliseLevelInfo();
+	if (levelName != nullptr && levelDifficulty != nullptr) 
+	{
+		levelName->setString(currentLevel.getLevelName());
+
+		switch (currentLevel.getLevelDifficulty())
+		{
+		case DIFFICULTY_EASY:
+			levelDifficultyString = "Easy";
+			break;
+		case DIFFICULTY_MEDIUM:
+			levelDifficultyString = "Medium";
+			break;
+		case DIFFICULTY_HARD:
+			levelDifficultyString = "Hard";
+			break;
+		}
+
+
+		levelDifficulty->setString("Difficulty - " + levelDifficultyString);
+	}
+	else 
+	{
+		initiliseLevelInfo();
+	}
 
 
 	levelCounter++;
@@ -144,10 +169,13 @@ void RHGameScene::initiliseLevelInfo()
 	{
 	case DIFFICULTY_EASY:
 		levelDifficultyString = "Easy";
+		break;
 	case DIFFICULTY_MEDIUM:
 		levelDifficultyString = "Medium";
+		break;
 	case DIFFICULTY_HARD:
 		levelDifficultyString = "Hard";
+		break;
 	}
 
 	levelDifficulty = cocos2d::Label::create("Difficulty - " + levelDifficultyString, "fonts/Marker Felt.ttf", 24);
@@ -178,7 +206,6 @@ void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 {
 	// here we will add the options to allow the end user to skip the level
 	this->setLevel("level" + std::to_string(levelCounter + 1) + ".mtlf");
-	cocos2d::log("Hello we should load up the next level.");
 }
 
 void RHGameScene::onResetLevelClicked(cocos2d::Ref* sender)
