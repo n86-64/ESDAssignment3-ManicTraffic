@@ -146,6 +146,10 @@ void RHGameScene::playWinSequense()
 				levelCompleationMessage->setString("Well Done you compleated the game. \n You Compleated the game in: \n" + std::to_string(totalTimeTaken) + "\n Play again and see if you can do better.");
 			}
 			levelCompleationMessage->setVisible(true);
+
+			nextLevelButton->setString("Back to Menu");
+			nextLevelMenu->setVisible(true);
+			nextLevelMenu->setEnabled(true);
 		}
 		else
 		{
@@ -270,6 +274,10 @@ void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 
 		this->levelComplete = false;
 		this->setLevel("level" + std::to_string(levelCounter + 1) + ".mtlf");
+	}
+	else 
+	{
+		Director::getInstance()->popScene();
 	}
 }
 
