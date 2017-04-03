@@ -50,7 +50,9 @@ public:
 	void setGridPosition(RHGridVector newPos);
 	void setVehicleType(RHCarTypes carType);
 	void setVehicleDirection(RHCarDirections carDirection);
+
 	RHCarDirections getVehicleDirection();
+	RHCarTypes getVehicleType();
 	void setGridLimitsX(RHGridVector gridLimit);
 	void setGridLimitsY(RHGridVector gridLimit);
 

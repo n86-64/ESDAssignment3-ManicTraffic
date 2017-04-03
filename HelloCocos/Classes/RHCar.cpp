@@ -49,6 +49,7 @@ RHCar* RHCar::create(RHCarTypes carType, RHCarDirections carDirection, bool isMo
 			}
 		}
 
+		car->setVehicleType(carType);
 		car->setGridPosition(carPosition);
 		car->setVehicleDirection(carDirection);
 
@@ -303,4 +304,9 @@ bool RHCar::isOutsideGridLimits(int axis, cocos2d::Vec2 mouseDelta)
 RHCarDirections RHCar::getVehicleDirection() 
 {
 	return vehicleDirection;
+}
+
+RHCarTypes RHCar::getVehicleType()
+{
+	return vehicleType;
 }

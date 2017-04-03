@@ -1,3 +1,4 @@
+#include "SimpleAudioEngine.h"
 #include "RHScenes.h"
 
 USING_NS_CC;
@@ -99,8 +100,24 @@ void RHGameScene::initUI()
 
 	addButtons();
 
+	levelCompleationMessage = cocos2d::Label::createWithTTF("Well done you compleated the Level. \n Now move on to the next one.", "fonts/Marker Felt.ttf", 24);
+	levelCompleationMessage->setPosition(Vec2(1100, 200));
+	levelCompleationMessage->setVisible(false);
+
+	nextLevelButton = cocos2d::MenuItemLabel::create(
+		cocos2d::Label::createWithTTF("Next Level", "fonts/Marker Felt.ttf", 24),
+		CC_CALLBACK_1(RHGameScene::onSkipLevelClicked, this)
+		);
+
+	nextLevelMenu = cocos2d::Menu::create(nextLevelButton, nullptr);
+	nextLevelMenu->setPosition(Vec2(1100, 150));
+	nextLevelMenu->setVisible(false);
+	nextLevelMenu->setEnabled(false);
+
 	this->addChild(timeLabel, 2);
 	this->addChild(movesLabel, 2);
+	this->addChild(levelCompleationMessage, 2);
+	this->addChild(nextLevelMenu, 2);
 }
 
 void RHGameScene::addMove()
@@ -110,7 +127,33 @@ void RHGameScene::addMove()
 
 void RHGameScene::playWinSequense()
 {
-	cocos2d::log("Yay we win");
+	if (!levelComplete) 
+	{
+		CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("Music/solved.wav");
+		levelComplete = true;
+		totalTimeTaken += levelTime;
+
+		// here we will show a message for a few secounds and then move then onto the next level. 
+		if (levelCounter + 1 > 8)
+		{
+			// TODO - Display a well done and give out the results message. 
+			if (numberOfSkippedLevels > 0) 
+			{
+				levelCompleationMessage->setString("Well Done you finished the game. \n Although you skipped " + std::to_string(numberOfSkippedLevels) + " levels."  + "\n Play again and \n see if you can do better.");
+			}
+			else 
+			{
+				levelCompleationMessage->setString("Well Done you compleated the game. \n You Compleated the game in: \n" + std::to_string(totalTimeTaken) + "\n Play again and see if you can do better.");
+			}
+			levelCompleationMessage->setVisible(true);
+		}
+		else
+		{
+			levelCompleationMessage->setVisible(true);
+			nextLevelMenu->setVisible(true);
+			nextLevelMenu->setEnabled(true);
+		}
+	}
 }
 
 void RHGameScene::setLevel(std::string levelToOpen)
@@ -153,9 +196,12 @@ void RHGameScene::setLevel(std::string levelToOpen)
 
 void RHGameScene::update(float delta)
 {
-	levelTime += delta;
-	timeLabel->setString("Time - " + std::to_string(levelTime));
-	movesLabel->setString("Moves - " + std::to_string(numberOfMoves));
+	if (!levelComplete) 
+	{
+		levelTime += delta;
+		timeLabel->setString("Time - " + std::to_string(levelTime));
+		movesLabel->setString("Moves - " + std::to_string(numberOfMoves));
+	}
 }
 
 void RHGameScene::initiliseLevelInfo()
@@ -204,18 +250,32 @@ void RHGameScene::addButtons()
 
 void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 {
+
 	// here we will add the options to allow the end user to skip the level
 	if (!(levelCounter + 1 > 8)) 
 	{
+			// Here we will track the stats of the player.
+			// including the number of moves taken and the time taken to complete the game. 
+
+		if (!levelComplete) 
+		{
+			numberOfSkippedLevels++;
+		}
+
 		numberOfMoves = 0;
 		levelTime = 0.0f;
+		levelCompleationMessage->setVisible(false);
+		nextLevelMenu->setEnabled(false);
+		nextLevelMenu->setVisible(false);
+
+		this->levelComplete = false;
 		this->setLevel("level" + std::to_string(levelCounter + 1) + ".mtlf");
 	}
 }
 
 void RHGameScene::onResetLevelClicked(cocos2d::Ref* sender)
 {
-	// here we will reset the level. 
+	// here we will reset the level and allow the user to try again. 
 	numberOfMoves = 0;
 	levelTime = 0.0f;
 	levelGrid->resetGrid();

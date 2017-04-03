@@ -59,7 +59,7 @@ void RHMainMenu::createMenuOptions()
 void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 {
 	// here we will open the first level and then we will allow the user to skip levels if they cant solve it and move the user on to another level if nessecery. 
-
+	// at the end they will get a list of results and be moved onto the next level. 
 	RHGameScene* gameScene = RHGameScene::createScene();
 	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 	gameScene->setLevel("level1.mtlf");
@@ -69,12 +69,12 @@ void RHMainMenu::playGameClicked(cocos2d::Ref* sender)
 void RHMainMenu::createLevelClicked(cocos2d::Ref* sender)
 {
 	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-	Director::getInstance()->pushScene(TransitionFade::create(0.5,(cocos2d::Scene*)RHDevScene::createScene()));
+	Director::getInstance()->pushScene(TransitionFade::create(0.5,RHDevScene::createScene()));
 }
 
 void RHMainMenu::openSettingsClicked(cocos2d::Ref* sender)
 {
-
+	// TODO - consider removing this option. 
 }
 
 void RHMainMenu::quitClicked(cocos2d::Ref* sender)

@@ -109,9 +109,8 @@ void RHGameGrid::onTouchMoved(cocos2d::Touch* touchData, cocos2d::Event* event)
 					}
 					// selectedCar->canMove = false;
 				}
-				else if(selectedCar->getPositionX() > 412.0f) 
+				else if(selectedCar->getPositionX() > 440.0f && (selectedCar->getVehicleType() == CAR_TARGET)) 
 				{
-					// add win sequense here. 
 					currentScene = static_cast<RHGameScene*>(this->getParent());
 					if (currentScene != nullptr) 
 					{

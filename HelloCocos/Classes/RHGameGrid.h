@@ -43,6 +43,4 @@ public:
 private: 
 	RHCar* selectedCar = nullptr;
 	RHLevelState theState;
-
-	void getAndPlaceVehicles();
 };

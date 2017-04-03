@@ -21,12 +21,9 @@ public:
 
 	bool init() override;
 
-	// cosmetics
 	void initBackgroundAndWindows();
 	void initGrid();
 
-	// TODO - add routienes to initialise the elements to allow players
-	// to create there own levels. 
 
 
 	CREATE_FUNC(RHDevScene)
@@ -47,10 +44,9 @@ public:
 
 	void addMove();
 	void playWinSequense();
-	// TODO - add routienes to initialise the game according to the 
-	// level that the user is playing.
-
 	void setLevel(std::string levelToOpen);
+
+
 
 	void update(float delta) override;
 
@@ -62,14 +58,23 @@ private:
 	cocos2d::Label* levelName = nullptr;
 	cocos2d::Label* levelDifficulty = nullptr;
 
-	float levelTime = 0.0f; // time in secounds.
+	cocos2d::Label* levelCompleationMessage = nullptr;
+	cocos2d::MenuItemLabel* nextLevelButton = nullptr;
+	cocos2d::Menu* nextLevelMenu = nullptr;
+
+	float levelTime = 0.0f; 
 	int numberOfMoves = 0;
 	int levelCounter = 0;
+
+	// game stats
+	float totalTimeTaken = 0.0f;
+	int numberOfSkippedLevels = 0;
+
+	bool levelComplete = false;
 
 	void initiliseLevelInfo();
 	void addButtons();
 
-	// events for the buttons. 
 	void onSkipLevelClicked(cocos2d::Ref* sender);
 	void onResetLevelClicked(cocos2d::Ref* sender);
 
