@@ -77,17 +77,11 @@
     <Filter Include="src\Scenes">
       <UniqueIdentifier>{52f26db9-1bf4-4a0a-83bb-8d05b20d76a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Debugger">
-      <UniqueIdentifier>{f916ce1d-d8a4-4daa-9dcb-11e760b5fa7c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Scenes\Base Scene">
       <UniqueIdentifier>{44b71099-b413-4f98-a430-a7a1492c8b7d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Scenes\Game Scenes">
       <UniqueIdentifier>{512b56bd-9394-477a-a5c5-7017ff3037a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\UI">
-      <UniqueIdentifier>{860dda01-7f04-423e-9b29-d0bd3fc4db15}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Game Objects">
       <UniqueIdentifier>{c67e8a70-cb18-4f37-9fe8-3957b85c8c86}</UniqueIdentifier>

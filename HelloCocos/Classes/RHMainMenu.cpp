@@ -50,7 +50,7 @@ void RHMainMenu::createMenuOptions()
 	MenuItemLabel* openSettingsItem = MenuItemLabel::create(openSettingsLabel, CC_CALLBACK_1(RHMainMenu::openSettingsClicked, this));
 	MenuItemLabel* quitItem = MenuItemLabel::create(quitLabel, CC_CALLBACK_1(RHMainMenu::quitClicked, this));
 
-	Menu* theMenu = Menu::create(playGameItem, createLevelsItem, openSettingsItem ,quitItem, nullptr);
+	Menu* theMenu = Menu::create(playGameItem, quitItem, nullptr);
 	theMenu->setPosition(Vec2(80, 400));
 	theMenu->alignItemsVerticallyWithPadding(0.0f);
 	this->addChild(theMenu, 1);

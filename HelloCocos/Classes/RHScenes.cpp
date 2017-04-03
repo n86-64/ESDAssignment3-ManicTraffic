@@ -110,7 +110,7 @@ void RHGameScene::initUI()
 		);
 
 	nextLevelMenu = cocos2d::Menu::create(nextLevelButton, nullptr);
-	nextLevelMenu->setPosition(Vec2(1100, 150));
+	nextLevelMenu->setPosition(Vec2(1100, 100));
 	nextLevelMenu->setVisible(false);
 	nextLevelMenu->setEnabled(false);
 
@@ -252,6 +252,7 @@ void RHGameScene::addButtons()
 	this->addChild(gameMenu, 1);
 }
 
+// minitialises the next level depending on whether the level was skipped of finished.
 void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 {
 
