@@ -278,7 +278,10 @@ void RHGameScene::onSkipLevelClicked(cocos2d::Ref* sender)
 	}
 	else 
 	{
-		Director::getInstance()->popScene();
+		if (levelComplete) 
+		{
+			Director::getInstance()->popScene();
+		}
 	}
 }
 

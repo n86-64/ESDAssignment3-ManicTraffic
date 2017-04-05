@@ -8,7 +8,7 @@ File Name - RHGridVector.h
 File Contents - class definctions for the Grid Vector.
 
 Purpose - Contains the vector data structure which is used for calculating the vehicles position.
-        - code derived from previous math helper libraray. 
+        - code derived from previous math helper libraray (GridVector) used in Exersice 2 - Minesweeper
 */
 
 

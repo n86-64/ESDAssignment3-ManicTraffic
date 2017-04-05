@@ -1,3 +1,4 @@
+// RH grid vector adapted from GridVector used in exersice 2 - minesweeper. 
 #include "RHGridVector.h"
 
 RHGridVector::RHGridVector()

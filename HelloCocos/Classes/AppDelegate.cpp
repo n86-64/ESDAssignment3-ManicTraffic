@@ -41,6 +41,13 @@ void AppDelegate::applicationDidEnterBackground()
 
 void AppDelegate::applicationWillEnterForeground() 
 {
+	RHMainMenu* testPtr;
+	testPtr = dynamic_cast<RHMainMenu*>(Director::getInstance()->getRunningScene());
+
+	if (testPtr != nullptr) 
+	{
+		CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+	}
+
 	Director::getInstance()->resume();
-	CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }
